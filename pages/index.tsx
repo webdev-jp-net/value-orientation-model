@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 import { ValueOrientationMatrix, type PersonalPlot } from '../components/ValueOrientationMatrix'
 import { Guide } from '../components/Guide'
 import { GroupEditor } from '../components/GroupEditor'
@@ -127,8 +128,16 @@ export default function Home() {
 
           {/* Matrix and Form Section */}
           <section className="flex flex-col gap-20 lg:gap-35">
-            <div className="max-w-lg mx-auto w-full">
-              <ValueOrientationMatrix personalPlotList={completePersonList} />
+            <div className="flex flex-col gap-8 items-center">
+              <div className="max-w-lg w-full">
+                <ValueOrientationMatrix personalPlotList={completePersonList} />
+              </div>
+              <Link 
+                href="/personalPlot"
+                className="bg-primary text-white px-8 py-3 rounded-ldsg-200 font-bold hover:opacity-80 transition-opacity"
+              >
+                新しいパーソナルプロットを作成
+              </Link>
             </div>
 
             {/* Input Group Editor */}
