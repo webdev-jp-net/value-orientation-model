@@ -1,14 +1,52 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
-import { Trash2 } from 'lucide-react'
-import { ValueOrientationMatrix, type Person } from '../components/ValueOrientationMatrix'
+import { ValueOrientationMatrix, type PersonalPlot } from '../components/ValueOrientationMatrix'
 import { Guide } from '../components/Guide'
+import { GroupEditor } from '../components/GroupEditor'
+
+export type PersonalPlotGroup = {
+  name: string
+  personalPlotList: PersonalPlot[]
+}
+
+const STORAGE_KEY = 'value-orientation-model-data'
 
 export default function Home() {
-  const [personList, setPersonList] = useState<Person[]>([])
+  const [groupName, setGroupName] = useState('')
+  const [personalPlotList, setPersonalPlotList] = useState<PersonalPlot[]>([])
+  const [isMounted, setIsMounted] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
+
+  // 初期ロード
+  useEffect(() => {
+    setIsMounted(true)
+    const savedData = localStorage.getItem(STORAGE_KEY)
+    if (savedData) {
+      try {
+        const parsed: PersonalPlotGroup = JSON.parse(savedData)
+        setGroupName(parsed.name || '')
+        setPersonalPlotList(parsed.personalPlotList || [])
+      } catch (e) {
+        console.error('Failed to parse saved data', e)
+      }
+    }
+  }, [])
+
+  const handleSave = () => {
+    setIsSaving(true)
+    try {
+      const data: PersonalPlotGroup = {
+        name: groupName,
+        personalPlotList: personalPlotList,
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+    } finally {
+      setIsSaving(false)
+    }
+  }
 
   const addPerson = () => {
-    const newPerson: Person = {
+    const newPerson: PersonalPlot = {
       id: Date.now().toString(),
       displayName: "",
       structuralLogic: 0,
@@ -16,18 +54,31 @@ export default function Home() {
       interpersonal: 0,
       socialAdaptation: 0,
     }
-    setPersonList([...personList, newPerson])
+    setPersonalPlotList([...personalPlotList, newPerson])
   }
 
-  const updatePerson = (id: string, field: keyof Person, value: string | number) => {
-    setPersonList(personList.map((p) => (p.id === id ? { ...p, [field]: value } : p)))
+  const updatePerson = (id: string, field: keyof PersonalPlot, value: string | number) => {
+    setPersonalPlotList(personalPlotList.map((p) => (p.id === id ? { ...p, [field]: value } : p)))
+  }
+
+  const handleImport = (id: string, csvValue: string) => {
+    const values = csvValue.split(',').map(v => parseInt(v.trim()))
+    if (values.length === 4 && values.every(v => !isNaN(v))) {
+      setPersonalPlotList(personalPlotList.map(p => p.id === id ? {
+        ...p,
+        structuralLogic: values[0],
+        process: values[1],
+        interpersonal: values[2],
+        socialAdaptation: values[3]
+      } : p))
+    }
   }
 
   const deletePerson = (id: string) => {
-    setPersonList(personList.filter((p) => p.id !== id))
+    setPersonalPlotList(personalPlotList.filter((p) => p.id !== id))
   }
 
-  const isPersonComplete = (person: Person): boolean => {
+  const isPersonComplete = (person: PersonalPlot): boolean => {
     return (
       person.displayName.trim() !== "" &&
       person.structuralLogic >= -10 &&
@@ -41,7 +92,9 @@ export default function Home() {
     )
   }
 
-  const completePersonList = personList.filter(isPersonComplete)
+  const completePersonList = personalPlotList.filter(isPersonComplete)
+
+  if (!isMounted) return null
 
   return (
     <>
@@ -75,87 +128,22 @@ export default function Home() {
           {/* Matrix and Form Section */}
           <section className="flex flex-col gap-20 lg:gap-35">
             <div className="max-w-lg mx-auto w-full">
-              <ValueOrientationMatrix personList={completePersonList} />
+              <ValueOrientationMatrix personalPlotList={completePersonList} />
             </div>
 
-            {/* Input Table */}
-            <div className="bg-white rounded-ldsg-400 border border-gray-border p-8 flex flex-col gap-8">
-              <div className="flex justify-between items-center">
-                <h3 className="text-h3 text-dark">データ入力</h3>
-                <button 
-                  onClick={addPerson}
-                  className="bg-primary text-white px-6 py-2 rounded-ldsg-200 font-bold hover:opacity-80 transition-opacity"
-                >
-                  人物を追加
-                </button>
-              </div>
-
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="border-b border-gray-border">
-                      <th className="py-4 px-2 text-label text-gray-paragraph">表示名</th>
-                      <th className="py-4 px-2 text-label text-gray-paragraph">
-                        インポート（構造, プロセス, 人物, 社会的調和）
-                      </th>
-                      <th className="py-4 px-2 text-label text-gray-paragraph text-center">操作</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {personList.length === 0 ? (
-                      <tr>
-                        <td colSpan={3} className="py-12 text-center text-body text-gray-placeholder">
-                          「人物を追加」ボタンをクリックしてデータを入力してください
-                        </td>
-                      </tr>
-                    ) : (
-                      personList.map((person) => (
-                        <tr key={person.id} className="border-b border-gray-border">
-                          <td className="py-4 px-2">
-                            <input
-                              type="text"
-                              value={person.displayName}
-                              onChange={(e) => updatePerson(person.id, "displayName", e.target.value)}
-                              placeholder="名前を入力"
-                              className="w-full border border-gray-border rounded-ldsg-100 px-3 py-2 text-body focus:outline-none focus:border-primary"
-                            />
-                          </td>
-                          <td className="py-4 px-2">
-                            <input
-                              type="text"
-                              value={`${person.structuralLogic}, ${person.process}, ${person.interpersonal}, ${person.socialAdaptation}`}
-                              onChange={(e) => {
-                                const values = e.target.value.split(',').map(v => parseInt(v.trim()))
-                                if (values.length === 4) {
-                                  setPersonList(personList.map(p => p.id === person.id ? {
-                                    ...p,
-                                    structuralLogic: isNaN(values[0]) ? p.structuralLogic : values[0],
-                                    process: isNaN(values[1]) ? p.process : values[1],
-                                    interpersonal: isNaN(values[2]) ? p.interpersonal : values[2],
-                                    socialAdaptation: isNaN(values[3]) ? p.socialAdaptation : values[3]
-                                  } : p))
-                                }
-                              }}
-                              placeholder="0, 0, 0, 0"
-                              className="w-full border border-gray-border rounded-ldsg-100 px-3 py-2 text-body focus:outline-none focus:border-primary"
-                            />
-                          </td>
-                          <td className="py-4 px-2 text-center">
-                            <button
-                              onClick={() => deletePerson(person.id)}
-                              className="text-gray-placeholder hover:text-error transition-colors"
-                              aria-label="削除"
-                            >
-                              <Trash2 size={20} />
-                            </button>
-                          </td>
-                        </tr>
-                      ))
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            {/* Input Group Editor */}
+            <GroupEditor 
+              groupName={groupName}
+              personalPlotList={personalPlotList}
+              onGroupNameChange={setGroupName}
+              onAddPerson={addPerson}
+              onUpdatePerson={updatePerson}
+              onDeletePerson={deletePerson}
+              onImport={handleImport}
+              onSave={handleSave}
+              isSaveDisabled={groupName.trim() === "" || completePersonList.length === 0}
+              isSaving={isSaving}
+            />
           </section>
 
           {/* 解説セクション */}

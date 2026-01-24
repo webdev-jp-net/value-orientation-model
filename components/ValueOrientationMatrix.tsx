@@ -1,6 +1,6 @@
 import React from 'react'
 
-export type Person = {
+export type PersonalPlot = {
   id: string
   displayName: string
   structuralLogic: number
@@ -10,10 +10,10 @@ export type Person = {
 }
 
 interface ValueOrientationMatrixProps {
-  personList: Person[]
+  personalPlotList: PersonalPlot[]
 }
 
-export const ValueOrientationMatrix: React.FC<ValueOrientationMatrixProps> = ({ personList }) => {
+export const ValueOrientationMatrix: React.FC<ValueOrientationMatrixProps> = ({ personalPlotList }) => {
   return (
     <div className="w-full aspect-square bg-white rounded-ldsg-400 border border-gray-border overflow-hidden">
       <svg viewBox="0 0 500 500" className="w-full h-full">
@@ -58,7 +58,7 @@ export const ValueOrientationMatrix: React.FC<ValueOrientationMatrixProps> = ({ 
         </g>
 
         {/* Data points */}
-        {personList.map((person) => {
+        {personalPlotList.map((person) => {
           const x = 250 + ((person.interpersonal + person.socialAdaptation) / 40) * 320
           const y = 250 - ((person.structuralLogic + person.process) / 40) * 320
           return (
