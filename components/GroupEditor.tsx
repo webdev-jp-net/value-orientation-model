@@ -1,5 +1,6 @@
 import React from 'react'
-import { Trash2, Loader2 } from 'lucide-react'
+import { Trash2, Loader2, ClipboardList } from 'lucide-react'
+import Link from 'next/link'
 import { type PersonalPlot } from './ValueOrientationMatrix'
 
 interface GroupEditorProps {
@@ -85,13 +86,23 @@ export const GroupEditor: React.FC<GroupEditorProps> = ({
                     />
                   </td>
                   <td className="py-4 px-2 text-center">
-                    <button
-                      onClick={() => onDeletePerson(person.id)}
-                      className="text-gray-placeholder hover:text-error transition-colors"
-                      aria-label="削除"
-                    >
-                      <Trash2 size={20} />
-                    </button>
+                    <div className="flex items-center justify-center gap-4">
+                      <Link
+                        href={`/personalPlot?targetId=${person.id}`}
+                        className="flex items-center gap-2 text-primary hover:opacity-80 transition-opacity text-label"
+                        title="設問から入力"
+                      >
+                        <ClipboardList size={16} />
+                        <span className="hidden sm:inline">設問から入力</span>
+                      </Link>
+                      <button
+                        onClick={() => onDeletePerson(person.id)}
+                        className="text-gray-placeholder hover:text-error transition-colors"
+                        aria-label="削除"
+                      >
+                        <Trash2 size={20} />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))

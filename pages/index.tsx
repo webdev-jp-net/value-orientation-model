@@ -132,12 +132,6 @@ export default function Home() {
               <div className="max-w-lg w-full">
                 <ValueOrientationMatrix personalPlotList={completePersonList} />
               </div>
-              <Link 
-                href="/personalPlot"
-                className="bg-primary text-white px-8 py-3 rounded-ldsg-200 font-bold hover:opacity-80 transition-opacity"
-              >
-                新しいパーソナルプロットを作成
-              </Link>
             </div>
 
             {/* Input Group Editor */}

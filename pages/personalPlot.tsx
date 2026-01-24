@@ -27,6 +27,8 @@ export default function PersonalPlotInput() {
   const handleSubmit = () => {
     if (!isAllAnswered) return
 
+    const { targetId } = router.query
+
     // 指標の計算
     const metrics = {
       structuralLogic: 0,
@@ -52,17 +54,30 @@ export default function PersonalPlotInput() {
       }
     }
 
-    // 新しいプロットを追加（名前は空欄）
-    const newPlot: PersonalPlot = {
-      id: Date.now().toString(),
-      displayName: '',
-      structuralLogic: metrics.structuralLogic,
-      process: metrics.process,
-      interpersonal: metrics.interpersonal,
-      socialAdaptation: metrics.socialAdaptation,
+    if (targetId && typeof targetId === 'string') {
+      // 既存レコードの更新
+      group.personalPlotList = group.personalPlotList.map(p => 
+        p.id === targetId ? {
+          ...p,
+          structuralLogic: metrics.structuralLogic,
+          process: metrics.process,
+          interpersonal: metrics.interpersonal,
+          socialAdaptation: metrics.socialAdaptation,
+        } : p
+      )
+    } else {
+      // 新しいプロットを追加（名前は空欄）
+      const newPlot: PersonalPlot = {
+        id: Date.now().toString(),
+        displayName: '',
+        structuralLogic: metrics.structuralLogic,
+        process: metrics.process,
+        interpersonal: metrics.interpersonal,
+        socialAdaptation: metrics.socialAdaptation,
+      }
+      group.personalPlotList.push(newPlot)
     }
 
-    group.personalPlotList.push(newPlot)
     localStorage.setItem(STORAGE_KEY, JSON.stringify(group))
 
     // indexへ戻る
