@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import questionsData from '../data/questionList.json'
+import { useAtom } from 'jotai'
+import questionListData from '../data/questionList.json'
 import { type PersonalPlot } from '../components/ValueOrientationMatrix'
-import { type PersonalPlotGroup } from './index'
-
-const STORAGE_KEY = 'value-orientation-model-data'
+import { groupAtom } from '../data/store'
 
 export default function PersonalPlotInput() {
   const router = useRouter()
+  const [group, setGroup] = useAtom(groupAtom)
   const [answers, setAnswers] = useState<Record<string, number>>({})
   const [isMounted, setIsMounted] = useState(false)
 
@@ -16,7 +16,7 @@ export default function PersonalPlotInput() {
     setIsMounted(true)
   }, [])
 
-  const questions = questionsData
+  const questions = questionListData
 
   const handleAnswerChange = (questionId: string, value: number) => {
     setAnswers((prev) => ({ ...prev, [questionId]: value }))
@@ -42,29 +42,20 @@ export default function PersonalPlotInput() {
       metrics[q.metric as keyof typeof metrics] += val
     })
 
-    // localStorage から既存データを読み込み
-    const savedData = localStorage.getItem(STORAGE_KEY)
-    let group: PersonalPlotGroup = { name: '', personalPlotList: [] }
-    
-    if (savedData) {
-      try {
-        group = JSON.parse(savedData)
-      } catch (e) {
-        console.error('Failed to parse saved data', e)
-      }
-    }
-
     if (targetId && typeof targetId === 'string') {
       // 既存レコードの更新
-      group.personalPlotList = group.personalPlotList.map(p => 
-        p.id === targetId ? {
-          ...p,
-          structuralLogic: metrics.structuralLogic,
-          process: metrics.process,
-          interpersonal: metrics.interpersonal,
-          socialAdaptation: metrics.socialAdaptation,
-        } : p
-      )
+      setGroup({
+        ...group,
+        personalPlotList: group.personalPlotList.map(p => 
+          p.id === targetId ? {
+            ...p,
+            structuralLogic: metrics.structuralLogic,
+            process: metrics.process,
+            interpersonal: metrics.interpersonal,
+            socialAdaptation: metrics.socialAdaptation,
+          } : p
+        )
+      })
     } else {
       // 新しいプロットを追加（名前は空欄）
       const newPlot: PersonalPlot = {
@@ -75,13 +66,14 @@ export default function PersonalPlotInput() {
         interpersonal: metrics.interpersonal,
         socialAdaptation: metrics.socialAdaptation,
       }
-      group.personalPlotList.push(newPlot)
+      setGroup({
+        ...group,
+        personalPlotList: [...group.personalPlotList, newPlot]
+      })
     }
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(group))
-
-    // indexへ戻る
-    router.push('/')
+    // indexへ戻る（エディタ位置へスクロール）
+    router.push('/#group-editor')
   }
 
   const renderQuestion = (q: typeof questions[0]) => (
@@ -103,15 +95,25 @@ export default function PersonalPlotInput() {
           {/* ラジオボタン: SPでは下段、LGでは中央 */}
           <div className="flex justify-between w-full lg:flex-1 order-3 lg:order-2 px-2">
             {[-2, -1, 0, 1, 2].map((val) => (
-              <label key={val} className="flex flex-col items-center gap-2 cursor-pointer group">
+              <label key={val} className="relative flex items-center justify-center cursor-pointer group py-2">
                 <input
                   type="radio"
                   name={q.id}
                   value={val}
                   checked={answers[q.id] === val}
                   onChange={() => handleAnswerChange(q.id, val)}
-                  className="w-6 h-6 accent-primary cursor-pointer"
+                  className="sr-only"
                 />
+                <div className={`
+                  w-9 h-9 rounded-full border-2 flex items-center justify-center transition-all duration-300
+                  ${answers[q.id] === val 
+                    ? 'border-primary bg-white' 
+                    : 'border-gray-border-medium bg-white group-hover:border-gray-caption'}
+                `}>
+                  {answers[q.id] === val && (
+                    <div className="w-4.5 h-4.5 rounded-full bg-primary animate-in zoom-in duration-300" />
+                  )}
+                </div>
               </label>
             ))}
           </div>
