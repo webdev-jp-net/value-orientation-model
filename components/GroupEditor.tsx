@@ -77,12 +77,12 @@ export const GroupEditor: React.FC<GroupEditorProps> = ({
                   <td className="py-4 px-2">
                     <input
                       type="text"
-                      key={`${person.id}-${person.valueLocus}-${person.boundary}`}
-                      defaultValue={person.valueLocus === 0 && person.boundary === 0 
+                      key={`${person.id}-${person.ownership}-${person.consensus}-${person.diversity}-${person.identityFusion}`}
+                      defaultValue={person.ownership === 0 && person.consensus === 0 && person.diversity === 0 && person.identityFusion === 0 
                         ? "" 
-                        : `${person.valueLocus}, ${person.boundary}`}
+                        : `${person.ownership}, ${person.consensus}, ${person.diversity}, ${person.identityFusion}`}
                       onBlur={(e) => onImport(person.id, e.target.value)}
-                      placeholder="帰属, 関係性"
+                      placeholder="オーナーシップ, コンセンサス, 自立, 融合"
                       className="w-full border border-gray-border rounded-ldsg-100 px-3 py-2 text-body focus:outline-none focus:border-primary"
                     />
                   </td>

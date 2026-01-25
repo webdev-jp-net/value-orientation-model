@@ -48,17 +48,16 @@ export default function PersonalPlotInput() {
 
     // 指標の計算
     const metrics = {
-      valueLocus: 0,
-      boundary: 0,
+      ownership: 0,
+      consensus: 0,
+      diversity: 0,
+      identityFusion: 0,
     }
 
     questionListData.forEach((q: any) => {
       const val = answers[q.id] || 0
-      // orientation に基づく加減算
-      // ownership, identityFusion は正の方向（上・右）
-      // consensus, diversity は負の方向（下・左）
-      const isPositive = q.orientation === 'ownership' || q.orientation === 'identityFusion'
-      metrics[q.axis as keyof typeof metrics] += isPositive ? val : -val
+      // orientation ごとにスコアを合算
+      metrics[q.orientation as keyof typeof metrics] += val
     })
 
     if (targetId && typeof targetId === 'string') {
@@ -68,8 +67,7 @@ export default function PersonalPlotInput() {
         personalPlotList: group.personalPlotList.map(p => 
           p.id === targetId ? {
             ...p,
-            valueLocus: metrics.valueLocus,
-            boundary: metrics.boundary,
+            ...metrics,
           } : p
         )
       })
@@ -78,8 +76,7 @@ export default function PersonalPlotInput() {
       const newPlot: PersonalPlot = {
         id: Date.now().toString(),
         displayName: '',
-        valueLocus: metrics.valueLocus,
-        boundary: metrics.boundary,
+        ...metrics,
       }
       setGroup({
         ...group,
