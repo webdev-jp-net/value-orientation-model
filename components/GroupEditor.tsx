@@ -77,11 +77,12 @@ export const GroupEditor: React.FC<GroupEditorProps> = ({
                   <td className="py-4 px-2">
                     <input
                       type="text"
-                      defaultValue={person.structuralLogic === 0 && person.process === 0 && person.interpersonal === 0 && person.socialAdaptation === 0 
+                      key={`${person.id}-${person.valueLocus}-${person.boundary}`}
+                      defaultValue={person.valueLocus === 0 && person.boundary === 0 
                         ? "" 
-                        : `${person.structuralLogic}, ${person.process}, ${person.interpersonal}, ${person.socialAdaptation}`}
+                        : `${person.valueLocus}, ${person.boundary}`}
                       onBlur={(e) => onImport(person.id, e.target.value)}
-                      placeholder="構造, プロセス, 人物, 社会的調和"
+                      placeholder="帰属, 関係性"
                       className="w-full border border-gray-border rounded-ldsg-100 px-3 py-2 text-body focus:outline-none focus:border-primary"
                     />
                   </td>

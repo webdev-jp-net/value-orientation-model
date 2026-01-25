@@ -40,10 +40,8 @@ export default function Home() {
     const newPerson: PersonalPlot = {
       id: Date.now().toString(),
       displayName: "",
-      structuralLogic: 0,
-      process: 0,
-      interpersonal: 0,
-      socialAdaptation: 0,
+      valueLocus: 0,
+      boundary: 0,
     }
     setGroup({
       ...group,
@@ -62,16 +60,14 @@ export default function Home() {
 
   const handleImport = (id: string, csvValue: string) => {
     const values = csvValue.split(',').map(v => parseInt(v.trim()))
-    if (values.length === 4 && values.every(v => !isNaN(v))) {
+    if (values.length === 2 && values.every(v => !isNaN(v))) {
       setGroup({
         ...group,
         personalPlotList: group.personalPlotList.map(p => 
           p.id === id ? {
             ...p,
-            structuralLogic: values[0],
-            process: values[1],
-            interpersonal: values[2],
-            socialAdaptation: values[3]
+            valueLocus: values[0],
+            boundary: values[1],
           } : p
         )
       })
@@ -88,14 +84,10 @@ export default function Home() {
   const isPersonComplete = (person: PersonalPlot): boolean => {
     return (
       person.displayName.trim() !== "" &&
-      person.structuralLogic >= -10 &&
-      person.structuralLogic <= 10 &&
-      person.process >= -10 &&
-      person.process <= 10 &&
-      person.interpersonal >= -10 &&
-      person.interpersonal <= 10 &&
-      person.socialAdaptation >= -10 &&
-      person.socialAdaptation <= 10
+      person.valueLocus >= -20 &&
+      person.valueLocus <= 20 &&
+      person.boundary >= -20 &&
+      person.boundary <= 20
     )
   }
 
