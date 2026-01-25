@@ -88,9 +88,9 @@ export default function Home() {
   const isPersonComplete = (person: PersonalPlot): boolean => {
     return (
       person.displayName.trim() !== "" &&
-      person.ownership >= -14 && person.ownership <= 14 &&
-      person.consensus >= -14 && person.consensus <= 14 &&
-      person.diversity >= -14 && person.diversity <= 14 &&
+      person.ownership >= -10 && person.ownership <= 10 &&
+      person.consensus >= -10 && person.consensus <= 10 &&
+      person.diversity >= -6 && person.diversity <= 6 &&
       person.identityFusion >= -14 && person.identityFusion <= 14
     )
   }
