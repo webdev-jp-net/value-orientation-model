@@ -71,72 +71,72 @@
   },
   {
     "id": "boundary-1",
-    "question": "質問11: 人物に関する設問（仮）",
+    "question": "「話題だから美味しい」「有名だからおしゃれ」という評価のしかたは違和感がある。",
     "axis": "boundary",
-    "orientation": "interpersonal",
-    "label": { "min": "否定", "max": "肯定" }
+    "orientation": "diversity",
+    "label": { "min": "どこに違和感？", "max": "違和感を感じる" }
   },
   {
     "id": "boundary-2",
-    "question": "質問16: 社会的調和に関する設問（仮）",
+    "question": "おすすめやトレンドを知ると、素直にふれてみたくなる。",
     "axis": "boundary",
-    "orientation": "socialAdaptation",
-    "label": { "min": "否定", "max": "肯定" }
+    "orientation": "identityFusion",
+    "label": { "min": "そうは思わない", "max": "気になる" }
   },
   {
     "id": "boundary-3",
-    "question": "質問12: 人物に関する設問（仮）",
+    "question": "自分がおすすめしたものへ相手は興味がなくてもかまわない。",
     "axis": "boundary",
-    "orientation": "interpersonal",
-    "label": { "min": "否定", "max": "肯定" }
+    "orientation": "diversity",
+    "label": { "min": "ややさみしい", "max": "かまわない" }
   },
   {
     "id": "boundary-4",
-    "question": "質問17: 社会的調和に関する設問（仮）",
+    "question": "人間関係で話をまとめるほうが自分には合っている。",
     "axis": "boundary",
-    "orientation": "socialAdaptation",
-    "label": { "min": "否定", "max": "肯定" }
+    "orientation": "identityFusion",
+    "label": { "min": "違和感がある", "max": "そうだと思う" }
   },
   {
     "id": "boundary-5",
-    "question": "質問13: 人物に関する設問（仮）",
+    "question": "状況に応じた立ち回りが求められる交流会や懇親会では、消耗を感じやすい。",
     "axis": "boundary",
-    "orientation": "interpersonal",
-    "label": { "min": "否定", "max": "肯定" }
+    "orientation": "diversity",
+    "label": { "min": "自然に立ち回れる", "max": "辛い" }
   },
   {
     "id": "boundary-6",
-    "question": "質問18: 社会的調和に関する設問（仮）",
+    "question": "「Aさんはすごいよね」と切り出されると、とりあえず「すごいよね」と同意する。",
     "axis": "boundary",
-    "orientation": "socialAdaptation",
-    "label": { "min": "否定", "max": "肯定" }
+    "orientation": "identityFusion",
+    "label": { "min": "「すごいんだ、ふーん」", "max": "すぐ言いそう" }
   },
   {
     "id": "boundary-7",
-    "question": "質問14: 人物に関する設問（仮）",
+    "question": "買い物のときは、商品スペックよりも製造元やレビュー、知人やインフルエンサーの推薦が気になる。",
     "axis": "boundary",
-    "orientation": "interpersonal",
-    "label": { "min": "否定", "max": "肯定" }
+    "orientation": "identityFusion",
+    "label": { "min": "場合による", "max": "そうだと思う" }
   },
   {
     "id": "boundary-8",
-    "question": "質問19: 社会的調和に関する設問（仮）",
+    "question": "チームで動くときは、代表者をきめてリードする体制がわかりやすくて安心できる。",
     "axis": "boundary",
-    "orientation": "socialAdaptation",
-    "label": { "min": "否定", "max": "肯定" }
+    "orientation": "identityFusion",
+    "label": { "min": "場合による", "max": "そうだと思う" }
   },
   {
     "id": "boundary-9",
-    "question": "質問15: 人物に関する設問（仮）",
+    "question": "結論が出ても、反対した人との関係が気になってしまう。",
     "axis": "boundary",
-    "orientation": "interpersonal",
-    "label": { "min": "否定", "max": "肯定" }
+    "orientation": "identityFusion",
+    "label": { "min": "割り切れる", "max": "うずく" }
   },
   {
     "id": "boundary-10",
-    "question": "質問20: 社会的調和に関する設問（仮）",
+    "question": "空気を悪くする正論には消耗してしまう。",
     "axis": "boundary",
-    "orientation": "socialAdaptation",
-    "label": { "min": "否定", "max": "肯定" }
+    "orientation": "identityFusion",
+    "label": { "min": "割り切れる", "max": "つかれる" }
   }
 ]

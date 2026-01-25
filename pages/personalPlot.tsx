@@ -55,9 +55,9 @@ export default function PersonalPlotInput() {
     questionListData.forEach((q: any) => {
       const val = answers[q.id] || 0
       // orientation に基づく加減算
-      // ownership, interpersonal は正の方向
-      // consensus, socialAdaptation は負の方向
-      const isPositive = q.orientation === 'ownership' || q.orientation === 'interpersonal'
+      // ownership, identityFusion は正の方向（上・右）
+      // consensus, diversity は負の方向（下・左）
+      const isPositive = q.orientation === 'ownership' || q.orientation === 'identityFusion'
       metrics[q.axis as keyof typeof metrics] += isPositive ? val : -val
     })
 
