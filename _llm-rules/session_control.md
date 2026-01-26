@@ -255,16 +255,16 @@ alwaysApply: true
 ### よくあるタスクパターン
 ```markdown
 - **プロジェクト開始時のタスク分解**
-  → task/management.md + github_integration.md + core_rules.md
+  → github_integration.md + core_rules.md
 
 - **新スプリントのタスク計画**
-  → task/management.md + issue/generation.md + github_integration.md + core_rules.md
+  → github_integration.md + core_rules.md
 
 - **要件からのタスク抽出**
-  → task/management.md + issue/generation.md + github_integration.md + core_rules.md
+  → github_integration.md + core_rules.md
 
 - **Issue作成作業**
-  → issue/generation.md + github_integration.md + core_rules.md
+  → github_integration.md + core_rules.md
 
 - **Issue着手前の必須確認**
   → github_integration.md + core_rules.md
@@ -274,8 +274,7 @@ alwaysApply: true
 
 - **PR作成作業**
   → github_integration.md + core_rules.md
-  → 事前確認1: ドキュメント反映（仕様書・設計書の更新）
-  → 事前確認2: 学習記録の追記（`_llm-memories/*.md`）
+  → ドキュメント反映（仕様書・設計書の更新）
   → 注意: ドキュメント更新と学習記録の完了を確認後にPR作成
 
 - **新しいReactコンポーネント実装**
@@ -297,26 +296,7 @@ alwaysApply: true
 
 - **要件定義書作成（詳細設計からの抽出）**
   → core_rules.md
-  → 出力先: docs/requirements_specification.md
 
-- **要件からのIssue候補生成**
-  → issue/master.md + github_integration.md + core_rules.md
-  → 出力先: _llm-memories/issues/[repo].md (DRAFT Issues)
-  → 形式仕様: issue/format.md
-
-- **DRAFT Issuesレビュー・登録**
-  → issue/master.md + github_integration.md + core_rules.md
-  → ツール: MCPサーバー (sync_with_github)
-
-- **Issue管理ワークフロー実行**
-  → issue/master.md + github_integration.md + core_rules.md
-  → 工程: DRAFT生成→レビュー→重複チェック→GitHub登録
-  → 詳細: issue/master.mdで全体像を確認
-
-- **generate_taskコマンドの明示的実行**
-  → task/generation.md + task/management.md + issue/master.md + core_rules.md
-  → ツール: MCPサーバー (generate_task)
-  → 重要: 明示的なコマンド指定が必須
 ```
 
 ---
