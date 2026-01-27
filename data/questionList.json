@@ -46,7 +46,7 @@
     "question": "アウトプットの運用に重心を置いているので、 立ち上げや過程のキャッチアップが相対的に浅くなることがある。",
     "axis": "valueLocus",
     "orientation": "consensus",
-    "label": { "min": "いや、途中にもかなり重心", "max": "はい、出すときが自分の出番" }
+    "label": { "min": "途中の重心のほうが強い", "max": "出すときからが本番" }
   },
   {
     "id": "valueLocus-8",
