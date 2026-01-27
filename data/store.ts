@@ -11,7 +11,7 @@ const STORAGE_KEY = 'value-orientation-model-data'
 
 // 永続化用のアトム
 export const groupAtom = atomWithStorage<PersonalPlotGroup>(STORAGE_KEY, {
-  name: '',
+  name: '新しいグループ',
   personalPlotList: [],
 })
 
