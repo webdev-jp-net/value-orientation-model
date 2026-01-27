@@ -43,17 +43,17 @@
   },
   {
     "id": "valueLocus-7",
-    "question": "0→1が得意。形のないものを形にする過程は自分が本領を発揮できるフェーズだ。",
+    "question": "0→1という、まだこの世にないものの姿を決め形作るフェーズには特別な手応えを感じる。",
     "axis": "valueLocus",
     "orientation": "ownership",
-    "label": { "min": "苦手です", "max": "まかせろ" }
+    "label": { "min": "得意な人に頼る", "max": "まかせて" }
   },
   {
     "id": "valueLocus-8",
-    "question": "好きなタスクもそうではないタスクも、一定のペースでそれなりに進行できる。",
+    "question": "好きではないタスクも、必要とされることだと捉えて取り組む。",
     "axis": "valueLocus",
     "orientation": "consensus",
-    "label": { "min": "嫌いな事は遅い", "max": "できる" }
+    "label": { "min": "分かるけど手は遅い", "max": "割り切って進めるのは得意" }
   },
   {
     "id": "valueLocus-9",
@@ -64,7 +64,7 @@
   },
   {
     "id": "valueLocus-10",
-    "question": "勉強していることをシェアして応援や関心のリアクションがあると、意味や納得感の裏付けになり安心するところがある。",
+    "question": "自分の勉強を共有する場所があると、意味や納得の裏付けになり安心感がある。",
     "axis": "valueLocus",
     "orientation": "consensus",
     "label": { "min": "意味は自分で決める", "max": "外からも認められると心強い" }
@@ -78,10 +78,10 @@
   },
   {
     "id": "boundary-2",
-    "question": "おすすめやトレンドを知ると、素直にふれてみたくなる。",
+    "question": "さまざまな価値観が交錯する物語を、どの登場人物や勢力にも自己投影せず楽しめる。",
     "axis": "boundary",
-    "orientation": "identityFusion",
-    "label": { "min": "興味ない", "max": "気になる" }
+    "orientation": "diversity",
+    "label": { "min": "誰かを応援する派", "max": "興味深い世界観だ" }
   },
   {
     "id": "boundary-3",
@@ -134,9 +134,9 @@
   },
   {
     "id": "boundary-10",
-    "question": "空気を悪くする正論には消耗してしまう。",
+    "question": "いつもキレっキレの提案をする人がパッとしなくても、評価や信頼感は大きく揺らがない。",
     "axis": "boundary",
-    "orientation": "identityFusion",
-    "label": { "min": "内容に入るので空気は感じない", "max": "つかれて内容が薄くなる" }
+    "orientation": "diversity",
+    "label": { "min": "変化にちょとざわついてしまう", "max": "今回は調子悪いね" }
   }
 ]
