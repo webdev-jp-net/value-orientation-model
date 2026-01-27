@@ -95,18 +95,18 @@ export default function PersonalPlotInput() {
         {/* 回答エリア: SPでは2段（ラベル左右分かち + 下段ラジオ）、LGでは1段 */}
         <div className="flex flex-wrap lg:flex-nowrap lg:items-center gap-y-4 lg:gap-15 max-w-md lg:max-w-4xl mx-auto w-full">
           {/* 最小値ラベル: SPでは上段左、LGでは左端 */}
-          <span className="text-caption text-gray-paragraph text-left w-1/2 lg:w-35 lg:flex-shrink-0 order-1">
+          <span className="text-caption text-gray-paragraph text-left w-1/2 lg:w-40 lg:flex-shrink-0 order-1">
             {q.label.min}
           </span>
           
           {/* 最大値ラベル: SPでは上段右、LGでは右端 */}
-          <span className="text-caption text-gray-paragraph text-right w-1/2 lg:w-35 lg:flex-shrink-0 order-2 lg:order-3">
+          <span className="text-caption text-gray-paragraph text-right w-1/2 lg:w-40 lg:flex-shrink-0 order-2 lg:order-3">
             {q.label.max}
           </span>
 
           {/* ラジオボタン: SPでは下段、LGでは中央 */}
-          <div className="flex justify-between w-full lg:flex-1 order-3 lg:order-2 px-2">
-            {[-2, -1, 0, 1, 2].map((val) => (
+          <div className="flex justify-between w-full lg:flex-1 order-3 lg:order-2 px-6">
+            {[-2, -1, 1, 2].map((val) => (
               <label key={val} className="relative flex items-center justify-center cursor-pointer group py-2">
                 <input
                   type="radio"
