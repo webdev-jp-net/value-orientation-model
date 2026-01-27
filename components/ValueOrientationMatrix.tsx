@@ -1,4 +1,5 @@
 import React from 'react'
+import questionListData from '../data/questionList.json'
 
 export type PersonalPlot = {
   id: string
@@ -14,6 +15,14 @@ interface ValueOrientationMatrixProps {
 }
 
 export const ValueOrientationMatrix: React.FC<ValueOrientationMatrixProps> = ({ personalPlotList }) => {
+  // 各志向の設問数を動的にカウント
+  const counts = {
+    ownership: questionListData.filter(q => q.orientation === 'ownership').length,
+    consensus: questionListData.filter(q => q.orientation === 'consensus').length,
+    diversity: questionListData.filter(q => q.orientation === 'diversity').length,
+    identityFusion: questionListData.filter(q => q.orientation === 'identityFusion').length,
+  }
+
   return (
     <div className="w-full aspect-square bg-white rounded-ldsg-400 border border-gray-border overflow-hidden">
       <svg viewBox="0 0 500 500" className="w-full h-full">
@@ -59,10 +68,19 @@ export const ValueOrientationMatrix: React.FC<ValueOrientationMatrixProps> = ({ 
 
         {/* Data points */}
         {personalPlotList.map((person) => {
-          const valueLocus = person.ownership - person.consensus
-          const boundary = person.identityFusion - person.diversity
-          const x = 250 + (boundary / 20) * 160
-          const y = 250 - (valueLocus / 20) * 160
+          // 設問数の不均衡を解消するため、平均値（-2〜2）ベースで座標を算出
+          // counts が 0 の場合は 0 除算を避けるためフォールバック
+          const avgOwnership = counts.ownership > 0 ? person.ownership / counts.ownership : 0
+          const avgConsensus = counts.consensus > 0 ? person.consensus / counts.consensus : 0
+          const avgDiversity = counts.diversity > 0 ? person.diversity / counts.diversity : 0
+          const avgIdentityFusion = counts.identityFusion > 0 ? person.identityFusion / counts.identityFusion : 0
+
+          const valueLocus = avgOwnership - avgConsensus // range: -4 to 4
+          const boundary = avgIdentityFusion - avgDiversity // range: -4 to 4
+
+          const x = 250 + (boundary / 4) * 160
+          const y = 250 - (valueLocus / 4) * 160
+
           return (
             <g key={person.id}>
               <circle cx={x} cy={y} r="8" className="fill-primary" />

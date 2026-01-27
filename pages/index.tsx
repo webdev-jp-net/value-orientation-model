@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { useAtom } from 'jotai'
 import { ValueOrientationMatrix, type PersonalPlot } from '../components/ValueOrientationMatrix'
 import { Guide } from '../components/Guide'
@@ -7,14 +8,68 @@ import { GroupEditor } from '../components/GroupEditor'
 import { groupAtom } from '../data/store'
 
 export default function Home() {
+  const router = useRouter()
   const [group, setGroup] = useAtom(groupAtom)
   const [isMounted, setIsMounted] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
 
-  // ハイドレーションエラー対策
+  // ハイドレーションエラー対策および初期URLパラメータ解析
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const nameParam = urlParams.get('name')
+    const plotParams = urlParams.getAll('p')
+
+    if (nameParam || plotParams.length > 0) {
+      const personalPlotList: PersonalPlot[] = plotParams.map((p, index) => {
+        const [displayName, ownership, consensus, diversity, identityFusion] = p.split(',')
+        return {
+          id: `url-${index}-${Date.now()}`,
+          displayName: displayName || '',
+          ownership: parseInt(ownership) || 0,
+          consensus: parseInt(consensus) || 0,
+          diversity: parseInt(diversity) || 0,
+          identityFusion: parseInt(identityFusion) || 0,
+        }
+      })
+
+      setGroup({
+        name: nameParam || '新しいグループ',
+        personalPlotList
+      })
+    }
+
     setIsMounted(true)
-  }, [])
+  }, [setGroup])
+
+  // 状態をURLパラメータに同期
+  useEffect(() => {
+    if (!isMounted || !router.isReady) return
+
+    const params = new URLSearchParams()
+    if (group.name) {
+      params.set('name', group.name)
+    }
+    
+    group.personalPlotList.forEach(p => {
+      // カンマ区切りのデータを作成（名前,O,C,D,I）
+      const pData = [
+        p.displayName,
+        p.ownership,
+        p.consensus,
+        p.diversity,
+        p.identityFusion
+      ].join(',')
+      params.append('p', pData)
+    })
+
+    const newQuery = params.toString()
+    const currentQuery = window.location.search.replace(/^\?/, '')
+
+    if (newQuery !== currentQuery) {
+      const url = newQuery ? `/?${newQuery}` : '/'
+      router.replace(url, undefined, { shallow: true })
+    }
+  }, [group, isMounted, router])
 
   // マウント完了（DOM出現）後に、ハッシュがあればスクロール
   useEffect(() => {
@@ -90,8 +145,8 @@ export default function Home() {
       person.displayName.trim() !== "" &&
       person.ownership >= -10 && person.ownership <= 10 &&
       person.consensus >= -10 && person.consensus <= 10 &&
-      person.diversity >= -6 && person.diversity <= 6 &&
-      person.identityFusion >= -14 && person.identityFusion <= 14
+      person.diversity >= -10 && person.diversity <= 10 &&
+      person.identityFusion >= -10 && person.identityFusion <= 10
     )
   }
 

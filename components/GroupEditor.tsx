@@ -1,5 +1,5 @@
-import React from 'react'
-import { Trash2, Loader2, ClipboardList } from 'lucide-react'
+import React, { useState } from 'react'
+import { Trash2, Loader2, ClipboardList, Share2, Check } from 'lucide-react'
 import Link from 'next/link'
 import { type PersonalPlot } from './ValueOrientationMatrix'
 
@@ -28,6 +28,19 @@ export const GroupEditor: React.FC<GroupEditorProps> = ({
   isSaveDisabled,
   isSaving = false,
 }) => {
+  const [isShared, setIsShared] = useState(false)
+
+  const handleShare = () => {
+    if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(window.location.href)
+      setIsShared(true)
+      setTimeout(() => setIsShared(false), 2000)
+    } else {
+      // フォールバック: Clipboard APIが利用できない場合
+      alert("お使いのブラウザではクリップボードへのコピーが制限されています。アドレスバーのURLを直接コピーしてシェアしてください。")
+    }
+  }
+
   return (
     <div id="group-editor" className="bg-white rounded-ldsg-400 border border-gray-border p-8 flex flex-col gap-8">
       <div className="flex flex-col gap-6">
@@ -122,15 +135,26 @@ export const GroupEditor: React.FC<GroupEditorProps> = ({
             placeholder="グループ名を入力"
             className="w-full sm:max-w-md border border-gray-border rounded-ldsg-100 px-3 py-2 text-body focus:outline-none focus:border-primary"
           />
-        <button 
-          onClick={onSave}
-          disabled={isSaveDisabled || isSaving}
-          className="w-full sm:w-auto bg-primary text-white px-8 py-2 rounded-ldsg-200 font-bold hover:opacity-80 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center"
-        >
-          <div className="flex items-center justify-center h-5">
-            {isSaving ? <Loader2 className="animate-spin" size={20} /> : "このグループを保存"}
-          </div>
-        </button>
+        <div className="flex gap-4">
+          <button 
+            onClick={handleShare}
+            className="w-full sm:w-auto border border-primary text-primary px-8 py-2 rounded-ldsg-200 font-bold hover:bg-primary/5 transition-all flex items-center justify-center gap-2"
+          >
+            <div className="flex items-center justify-center h-5 gap-2">
+              {isShared ? <Check size={20} /> : <Share2 size={20} />}
+              {isShared ? "コピーしました" : "このグループをシェア"}
+            </div>
+          </button>
+          <button 
+            onClick={onSave}
+            disabled={isSaveDisabled || isSaving}
+            className="w-full sm:w-auto bg-primary text-white px-8 py-2 rounded-ldsg-200 font-bold hover:opacity-80 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center"
+          >
+            <div className="flex items-center justify-center h-5">
+              {isSaving ? <Loader2 className="animate-spin" size={20} /> : "このグループを一時保存"}
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   )

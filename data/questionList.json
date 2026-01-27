@@ -1,73 +1,73 @@
 [
   {
     "id": "valueLocus-1",
-    "question": "思想や設計、モノやコトに魅力を感じ、勉強したり洗練させたくなってしまう。",
+    "question": "コンセプトや設計、訓練など外から見えない分野にも関心があり、研究したり手をかけたくなってしまう。",
     "axis": "valueLocus",
     "orientation": "ownership",
-    "label": { "min": "最低限が適切", "max": "つい没頭する" }
+    "label": { "min": "内側は最低限で適切", "max": "熱中してしまう" }
   },
   {
     "id": "valueLocus-2",
-    "question": "どこに出すか、どう伝えるか、どう根回ししておくかで価値を動かすことに関心がある。",
-    "axis": "valueLocus",
-    "orientation": "consensus",
-    "label": { "min": "それほど関心がない", "max": "とても意義を感じる" }
-  },
-  {
-    "id": "valueLocus-3",
     "question": "責任感があり、ついつい関与が深くなって疲れてしまうことがある。",
     "axis": "valueLocus",
     "orientation": "ownership",
     "label": { "min": "疲れない運用をしている", "max": "そうなりがち" }
   },
   {
-    "id": "valueLocus-4",
-    "question": "評価に接続しているところをていねいにキャッチアップできる。一方で、そこに至るまでのタスクへモチベーションを見いだしにくい側面もある。",
+    "id": "valueLocus-3",
+    "question": "結果が喜ばれるとしても、モノの品質を妥協する解決は自分の満足とは別物。",
     "axis": "valueLocus",
-    "orientation": "consensus",
-    "label": { "min": "自分はそうではない", "max": "自分は近いと思う" }
+    "orientation": "ownership",
+    "label": { "min": "喜ばれれば純粋に満足", "max": "妥協した違和感は残る" }
+  },
+  {
+    "id": "valueLocus-4",
+    "question": "0→1という、まだこの世にないものの姿を決め形作るフェーズには特別な手応えを感じる。",
+    "axis": "valueLocus",
+    "orientation": "ownership",
+    "label": { "min": "得意な人に頼る", "max": "まかせて" }
   },
   {
     "id": "valueLocus-5",
-    "question": "結果が喜ばれるとしても、モノの品質に疑問がある完結には違和感を感じる。",
-    "axis": "valueLocus",
-    "orientation": "ownership",
-    "label": { "min": "そうは思わない", "max": "引っかかりがある" }
-  },
-  {
-    "id": "valueLocus-6",
-    "question": "自分の働きかけにより、成果が喜ばれたり反響を呼んだり報酬が高くできたときの手応えは格別だ。",
-    "axis": "valueLocus",
-    "orientation": "consensus",
-    "label": { "min": "特に気にしなかった", "max": "そのとおり！" }
-  },
-  {
-    "id": "valueLocus-7",
-    "question": "0→1が得意。形のないものを形にする過程は自分が本領を発揮できるフェーズだ。",
-    "axis": "valueLocus",
-    "orientation": "ownership",
-    "label": { "min": "苦手です", "max": "まかせろ" }
-  },
-  {
-    "id": "valueLocus-8",
-    "question": "好きなタスクもそうではないタスクも、一定のペースでコンスタントに進行できる。",
-    "axis": "valueLocus",
-    "orientation": "consensus",
-    "label": { "min": "嫌いな事は遅い", "max": "できる" }
-  },
-  {
-    "id": "valueLocus-9",
     "question": "決定案から自分の関与やアイデアが全てなくなってしまうと、内心ざんねんだ。",
     "axis": "valueLocus",
     "orientation": "ownership",
-    "label": { "min": "気にならない", "max": "内心そうだ" }
+    "label": { "min": "決まれば純粋に満足", "max": "内心そうだ" }
+  },
+  {
+    "id": "valueLocus-6",
+    "question": "どこに出すか、どう伝えるか、どう根回ししておくかで価値を動かすことに関心がある。",
+    "axis": "valueLocus",
+    "orientation": "consensus",
+    "label": { "min": "それほど関心がない", "max": "とても意義を感じる" }
+  },
+  {
+    "id": "valueLocus-7",
+    "question": "アウトプットの運用に重心を置いているので、 立ち上げや過程のキャッチアップが相対的に浅くなることがある。",
+    "axis": "valueLocus",
+    "orientation": "consensus",
+    "label": { "min": "途中の重心のほうが強い", "max": "出すときからが本番" }
+  },
+  {
+    "id": "valueLocus-8",
+    "question": "反応や評価が返ってきたとき、ようやく一区切りついた気持ちになる。",
+    "axis": "valueLocus",
+    "orientation": "consensus",
+    "label": { "min": "評価は形が出せたあとの追加要素", "max": "受け入れてもらえるまではアサイン中" }
+  },
+  {
+    "id": "valueLocus-9",
+    "question": "好きではないタスクも、必要とされることだと捉えて取り組む。",
+    "axis": "valueLocus",
+    "orientation": "consensus",
+    "label": { "min": "分かるけど手は遅い", "max": "割り切って進めるのは得意" }
   },
   {
     "id": "valueLocus-10",
-    "question": "勉強していることをシェアして応援や関心のリアクションがあると、意味や納得感の裏付けになり安心するところがある。",
+    "question": "自分の勉強を共有する場所があると、意味や納得の裏付けになり安心感がある。",
     "axis": "valueLocus",
     "orientation": "consensus",
-    "label": { "min": "1人で気にせず勉強する", "max": "そういう時がある" }
+    "label": { "min": "意味は自分で決める", "max": "外からも認められると心強い" }
   },
   {
     "id": "boundary-1",
@@ -78,65 +78,65 @@
   },
   {
     "id": "boundary-2",
-    "question": "おすすめやトレンドを知ると、素直にふれてみたくなる。",
+    "question": "さまざまな価値観が交錯する物語を、どの登場人物や勢力にも自己投影せず楽しめる。",
     "axis": "boundary",
-    "orientation": "identityFusion",
-    "label": { "min": "そうは思わない", "max": "気になる" }
+    "orientation": "diversity",
+    "label": { "min": "誰かを応援する派", "max": "興味深い世界観だ" }
   },
   {
     "id": "boundary-3",
     "question": "自分がおすすめしたものへ相手は興味がなくてもかまわない。",
     "axis": "boundary",
     "orientation": "diversity",
-    "label": { "min": "ややさみしい", "max": "かまわない" }
+    "label": { "min": "ややさみしい", "max": "ぜんぜん平気" }
   },
   {
     "id": "boundary-4",
-    "question": "人間関係で話をまとめるほうが自分には合っている。",
-    "axis": "boundary",
-    "orientation": "identityFusion",
-    "label": { "min": "違和感がある", "max": "そうだと思う" }
-  },
-  {
-    "id": "boundary-5",
     "question": "状況に応じた立ち回りが求められる交流会や懇親会では、消耗を感じやすい。",
     "axis": "boundary",
     "orientation": "diversity",
-    "label": { "min": "自然に立ち回れる", "max": "辛い" }
+    "label": { "min": "ぜんぜん自然体でいける", "max": "消耗する" }
+  },
+  {
+    "id": "boundary-5",
+    "question": "いつもキレっキレの提案をする人がパッとしなくても、評価や信頼感は大きく揺らがない。",
+    "axis": "boundary",
+    "orientation": "diversity",
+    "label": { "min": "ギャップに内心ざわつく", "max": "今回は調子悪いね" }
   },
   {
     "id": "boundary-6",
-    "question": "「Aさんはすごいよね」と切り出されると、とりあえず「すごいよね」と同意する。",
+    "question": "物事を進行するとき、人間関係でまとめる立ち回りが自分には合っている。",
     "axis": "boundary",
     "orientation": "identityFusion",
-    "label": { "min": "「すごいんだ、ふーん」", "max": "すぐ言いそう" }
+    "label": { "min": "よくわからない、自分はしない。", "max": "気がつけばそこに寄ってる" }
   },
   {
     "id": "boundary-7",
-    "question": "買い物のときは、商品スペックよりも製造元やレビュー、知人やインフルエンサーの推薦が気になる。",
+    "question": "「Aさん絶対すごいよね！」と切り出されると、まず「すごいよね」と同意する。",
     "axis": "boundary",
     "orientation": "identityFusion",
-    "label": { "min": "場合による", "max": "そうだと思う" }
+    "label": { "min": "まずは「ふーん」", "max": "それ、自分のことだ" }
   },
   {
     "id": "boundary-8",
-    "question": "チームで動くときは、代表者をきめてリードする体制がわかりやすくて安心できる。",
+    "question": "レビューやおすすめを、共感したまま自分の評価として表明していることがある。",
+    "axis": "boundary",
+    "orientation": "identityFusion",
+    "label": { "min": "おすすめは参考止まり", "max": "いつのまにかやりがち" }
+  },
+  {
+    "id": "boundary-9",
+    "question": "グループでの取り組みは、推進委員や代表がリードする体制がわかりやすくて安心。",
     "axis": "boundary",
     "orientation": "identityFusion",
     "label": { "min": "場合による", "max": "そうだと思う" }
   },
   {
-    "id": "boundary-9",
-    "question": "結論が出ても、反対した人との関係が気になってしまう。",
-    "axis": "boundary",
-    "orientation": "identityFusion",
-    "label": { "min": "割り切れる", "max": "うずく" }
-  },
-  {
     "id": "boundary-10",
-    "question": "空気を悪くする正論には消耗してしまう。",
+    "question": "多数決で決めきるとき、賛成ではない人が残ることを内心では割り切りにくい。",
     "axis": "boundary",
     "orientation": "identityFusion",
-    "label": { "min": "割り切れる", "max": "つかれる" }
+    "label": { "min": "決まればどっちでもいい", "max": "仕方ないけど気がかり" }
   }
 ]
