@@ -90,8 +90,8 @@ export default function Home() {
       person.displayName.trim() !== "" &&
       person.ownership >= -10 && person.ownership <= 10 &&
       person.consensus >= -10 && person.consensus <= 10 &&
-      person.diversity >= -6 && person.diversity <= 6 &&
-      person.identityFusion >= -14 && person.identityFusion <= 14
+      person.diversity >= -8 && person.diversity <= 8 &&
+      person.identityFusion >= -12 && person.identityFusion <= 12
     )
   }
 
