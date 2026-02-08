@@ -1,5 +1,32 @@
-@use "@/style/_variable" as *;
+@use '@/style/_variable' as *;
 
 .matrix {
-  //
+  width: calc(100% - #{rem(16 + 16)});
+  max-width: rem(640);
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+.axisLine {
+  stroke: var(--border-color);
+  stroke-width: 1;
+}
+
+.axisName {
+  @include txt-description;
+
+  fill: var(--text-secondary);
+}
+
+.axisLabel {
+  font-weight: var(--font-weight-bold);
+  fill: var(--text-primary);
+}
+
+.plotLabel {
+  @include txt-description;
+}
+
+.plotPoint {
+  fill: var(--link-color);
 }
