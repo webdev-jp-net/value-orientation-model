@@ -2,10 +2,9 @@
 
 .matrix {
   position: relative;
-  width: calc(100% - #{rem(16 + 16)});
+  width: min(calc(100% - #{rem(16 + 16)}), rem(640), 100vh);
   max-width: rem(640);
-  height: 0;
-  padding-bottom: 100%;
+  aspect-ratio: 1 / 1;
   margin: 0 auto;
 
   > div {
