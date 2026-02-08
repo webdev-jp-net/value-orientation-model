@@ -177,27 +177,23 @@
 }
 
 .footer {
-  display: flex;
-  flex-direction: column;
   gap: var(--spacing-md);
 
-  @include mq($preset: fromWide) {
-    flex-direction: row;
+  @include mq(narrow) {
+    display: flex;
+    flex-direction: column;
     justify-content: flex-end;
     border: none;
   }
 
-  @include mq($from: fromWide) {
-    border-top: 1px solid var(--border-color);
+  @include mq($from: wide) {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
   }
 }
 
 .groupNameInput {
   width: 100%;
-
-  @include mq($preset: fromWide) {
-    max-width: rem(448);
-  }
 }
 
 .footerActions {

@@ -6,8 +6,8 @@
   background-color: var(--bg-secondary);
 
   @include mq(narrow) {
-    gap: var(--spacing-2xl);
-    padding-bottom: var(--spacing-2xl);
+    gap: var(--spacing-3xl);
+    padding-bottom: var(--spacing-3xl);
   }
 
   @include mq($from: wide) {
