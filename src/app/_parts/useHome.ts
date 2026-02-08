@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { useAtom } from 'jotai'
 import { useRouter, usePathname } from 'next/navigation'
 
-import { type PersonalPlot } from '@/components/ValueOrientationMatrix'
+import type { PersonalPlot } from '@/type/personalPlot'
 
 import { groupAtom } from '@/data/store'
 

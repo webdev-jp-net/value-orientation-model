@@ -6,7 +6,7 @@ import { useAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import { useSearchParams } from 'next/navigation'
 
-import { type PersonalPlot } from '@/components/ValueOrientationMatrix'
+import type { PersonalPlot } from '@/type/personalPlot'
 
 import questionListData from '@/data/questionList.json'
 import { groupAtom } from '@/data/store'

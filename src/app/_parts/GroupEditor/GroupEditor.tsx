@@ -5,11 +5,11 @@ import type { FC } from 'react'
 import { Trash2, Loader2, ClipboardList, Share2, Check } from 'lucide-react'
 import Link from 'next/link'
 
-import { type PersonalPlot } from '@/components/ValueOrientationMatrix'
-
 import styles from './GroupEditor.module.scss'
 
 import { useGroupEditor } from './useGroupEditor'
+
+import type { PersonalPlot } from '@/type/personalPlot'
 
 export interface GroupEditorProps {
   groupName: string

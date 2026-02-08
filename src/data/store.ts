@@ -1,6 +1,6 @@
 import { atomWithStorage } from 'jotai/utils'
 
-import { type PersonalPlot } from '../components/ValueOrientationMatrix'
+import type { PersonalPlot } from '@/type/personalPlot'
 
 export type PersonalPlotGroup = {
   name: string

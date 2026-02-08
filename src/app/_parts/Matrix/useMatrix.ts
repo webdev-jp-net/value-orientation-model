@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react'
 
 import { scaleLinear } from '@visx/scale'
 
-import type { PersonalPlot } from '@/components/ValueOrientationMatrix'
+import type { PersonalPlot } from '@/type/personalPlot'
 
 type LabelRect = {
   id: string
