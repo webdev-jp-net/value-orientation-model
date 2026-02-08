@@ -1,0 +1,11 @@
+@use '../function/rem' as *;
+@use '../mixin/mq' as *;
+
+@mixin container {
+  max-width: var(--container-width);
+
+  @include mq(wide) {
+    padding: 0 var(--spacing-3xl);
+    margin: inset(0 auto);
+  }
+}

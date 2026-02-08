@@ -16,13 +16,13 @@
 }
 
 @mixin hd-sm {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
   line-height: 1.5;
 }
 
 @mixin hd-md {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-semibold);
   line-height: 1.5;
 }
