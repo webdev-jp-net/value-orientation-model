@@ -12,25 +12,35 @@
 
 ## Available Tokens
 
-`tailwind.config.js`に登録済みのLINE Design System公式値：
+`tailwind.config.js`に登録済みのトークンです。
 
-**Colors**
-- `primary`, `secondary`, `tertiary`（透明度: 10/20/40/60/80）
+### Colors
+
+- `primary`, `secondary`, `tertiary`
+  - 透明度: 0（DEFAULT）/10/20/40/60/80
 - `gray-paragraph`, `gray-caption`, `gray-border`, `gray-placeholder`
 - `error`, `link`, `success`
 
-**Typography**
-- `text-display`, `text-section`, `text-h2`〜`text-h5`（desktop/mobile variants）
-- `text-body`, `text-paragraph`, `text-caption`, `text-label`, `text-xs`
+### Typography
 
-**Border Radius**
-- `rounded-ldsg-100`(3px), `rounded-ldsg-200`(5px), `rounded-ldsg-300`(7px), `rounded-ldsg-400`(12px)
+- `display`, `section`, `h2`〜`h5`, `paragraph`
+  - レスポンシブ: DEFAULT / `-mobile`
+- `body`, `caption`, `label`, `xs`（`-mobile` なし）
 
-**Spacing & Gap**
+### Border Radius
+
+- `rounded-ldsg-100` (3px)
+- `rounded-ldsg-200` (5px)
+- `rounded-ldsg-300` (7px)
+- `rounded-ldsg-400` (12px)
+
+### Spacing & Gap
+
 - インデックス指定（例: `gap-2` = 8px, `gap-15` = 40px）
 - 主要な値: 4, 8, 11, 15, 16, 19, 20, 24, 27, 28, 30, 32, 33, 39, 40, 60, 80, 88, 100, 120, 140, 160px
 
-**Shadow**
+### Shadow
+
 - `shadow-card-hover`: `0 5px 12px 0 rgba(0,0,0,0.07)`
 
 ## Coding Standards
