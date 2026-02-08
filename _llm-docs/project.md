@@ -4,7 +4,7 @@
 
 ## Implementation Protocol
 
-AIエージェントは、あらゆる実装・提案の前に、プロジェクト固有の「絶対正解」として以下を同期すること。
+AIエージェントは、あらゆる実装・提案の前に、プロジェクト固有の「絶対正解」として以下を同期します。
 
 - **README.md (思想の源泉)**: 具現化すべき概念の定義、背景、目的。
 - **_llm-docs/dictionary.md (唯一の翻訳機)**: 概念に対応する、正式な英語名称と命名規則。
@@ -29,16 +29,16 @@ AIエージェントは、あらゆる実装・提案の前に、プロジェク
 
 ## Documentation Index
 
-各領域の詳細な専門知識は、以下の仕様書に定義されている。
+各領域の詳細な専門知識は、以下の仕様書に定義されています。ビジネスロジックや描画仕様を実装する際は、該当する仕様書を参照します。
 
 - **[model_definition.md](./spec/model_definition.md)**: 軸の定義およびスコア算出ロジック。
 - **[personal_plot.md](./spec/personal_plot.md)**: データ構造および入力・インポート仕様。
 - **[matrix_drawing.md](./spec/matrix_drawing.md)**: マトリクス描画および表示制御仕様。
 - **[question_concepts.md](./question_concepts.md)**: 設問ごとの背景意図および詳細コンセプト。
 
-## Design System Guidelines
+## Design Guidelines
 
-意匠の管理・デザインシステムは **[design_token.md](./design_token.md)** を参照。
+スタイリング規約は **[styling_protocol.md](./styling_protocol.md)** を参照します。
 
 ## Coding Standards
 
@@ -48,18 +48,13 @@ AIエージェントは、あらゆる実装・提案の前に、プロジェク
 - Destructure imports: `import { foo } from 'bar'`
 - Functional components with TypeScript interfaces
 - Use React 19 hooks (useState, useEffect)
-- Global State: Jotaiを使用。atomWithStorageによるlocalStorage永続化を標準とする。
+- Global State: Jotaiを使用します。atomWithStorageによるlocalStorage永続化を標準とします。ページ遷移を伴う状態共有が必要な場合は、localStorageを直接叩かずJotaiのatomを経由します。
 
 ### File Organization
 
 - Components in `src/components`
 - Pages in `src/pages` (Next.js convention)
 - Store/Atoms in `src/data/store.ts`
-
-## Important Notes
-
-- ページ遷移を伴う状態共有が必要な場合は、localStorageを直接叩かずJotaiアトムを経由する。
-- ビジネスロジックや描画仕様の詳細は、上記 `Documentation Index` の各ファイルを参照すること。
 
 ## Commands
 
