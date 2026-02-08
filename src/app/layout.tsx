@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@/styles/index.scss";
+import "@/style/index.scss";
 
 export const metadata: Metadata = {
   title: "CURRENT GRAVITY（カレントグラビティ） - 価値志向プロファイリングモデル",
