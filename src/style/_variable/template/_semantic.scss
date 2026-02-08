@@ -29,11 +29,18 @@
 }
 
 @mixin tmp-btn-primary {
-  color: var(--blue-contrast);
-  background-color: var(--blue-solid);
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--bg-primary);
+  cursor: pointer;
+  background-color: var(--text-primary);
 
-  &:hover {
-    background-color: var(--blue-emphasized);
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.25;
+  }
+
+  &:not(:disabled):hover {
+    background-color: var(--link-color);
   }
 }
 

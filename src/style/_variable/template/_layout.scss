@@ -2,10 +2,15 @@
 @use '../mixin/mq' as *;
 
 @mixin container {
+  width: 100%;
   max-width: var(--container-width);
 
-  @include mq(wide) {
+  @include mq(narrow) {
+    padding: 0 var(--spacing-lg);
+  }
+
+  @include mq($from: wide) {
     padding: 0 var(--spacing-3xl);
-    margin: inset(0 auto);
+    margin: 0 auto;
   }
 }
