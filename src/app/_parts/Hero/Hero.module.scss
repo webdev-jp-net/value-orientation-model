@@ -10,8 +10,7 @@
   background-color: var(--bg-primary);
 
   @include mq($from: wide) {
-    height: 50svh;
-    padding: var(--spacing-xl) 0;
+    height: min(40svh, var(--container-narrow));
   }
 }
 
@@ -22,7 +21,7 @@
 }
 
 .introduction {
-  @include container;
+  @include container-narrow;
 
   display: flex;
   flex-direction: column;
