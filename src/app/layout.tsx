@@ -5,6 +5,21 @@ export const metadata: Metadata = {
   title: "CURRENT GRAVITY（カレントグラビティ） - 価値志向プロファイリングモデル",
   description:
     "あなたやチームのプロファイリングモデル。責任の引き受け方、関係の持ち方の地図。",
+  themeColor: "#ffffff",
+  openGraph: {
+    type: "website",
+    title: "CURRENT GRAVITY（カレントグラビティ） - 価値志向プロファイリングモデル",
+    description:
+      "あなたやチームのプロファイリングモデル。責任の引き受け方、関係の持ち方の地図。",
+    images: ["/img_ogp.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CURRENT GRAVITY（カレントグラビティ） - 価値志向プロファイリングモデル",
+    description:
+      "あなたやチームのプロファイリングモデル。責任の引き受け方、関係の持ち方の地図。",
+    images: ["/img_ogp.png"],
+  },
 };
 
 export default function RootLayout({
