@@ -3,14 +3,13 @@
 import { useEffect, useState } from 'react'
 
 import { useAtom } from 'jotai'
-import { useRouter, usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 import { groupAtom } from '@/data/store'
 
 import type { PersonalPlot } from '@/type/personalPlot'
 
 export const useHome = () => {
-  const router = useRouter()
   const pathname = usePathname()
   const [group, setGroup] = useAtom(groupAtom)
   const [isMounted, setIsMounted] = useState(false)
@@ -45,7 +44,7 @@ export const useHome = () => {
     setIsMounted(true)
   }, [setGroup])
 
-  // 状態をURLパラメータに同期
+  // 状態をURLパラメータに同期（replaceState でスクロール位置を維持）
   useEffect(() => {
     if (!isMounted) return
 
@@ -71,9 +70,9 @@ export const useHome = () => {
     if (newQuery !== currentQuery) {
       const base = pathname ?? ''
       const url = newQuery ? `${base}?${newQuery}` : base
-      router.replace(url)
+      window.history.replaceState(null, '', url)
     }
-  }, [group, isMounted, pathname, router])
+  }, [group, isMounted, pathname])
 
   // マウント完了後にハッシュがあればスクロール
   useEffect(() => {
