@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "scaffold": "scaffdog generate"
   },
   "dependencies": {
     "@visx/group": "^3.12.0",

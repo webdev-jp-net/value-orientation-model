@@ -81,9 +81,8 @@ html {
   min-height: 100%;
   font-size: math.div(16, 375) * 100vw; // 幅375pxのアートボードで16px相当
 
-  // 画面幅430を超えたらリキッドを解除してセンタリング
+  // 画面幅430を超えたらリキッドを解除
   @media screen and (width > 430px) {
-    max-width: 430px;
     margin: 0 auto;
     margin-inline: auto;
     font-size: 18.3467px;

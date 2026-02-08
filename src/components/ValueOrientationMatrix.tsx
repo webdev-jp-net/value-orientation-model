@@ -225,7 +225,7 @@ const MatrixContent: React.FC<ValueOrientationMatrixProps & { width: number; hei
 
 export const ValueOrientationMatrix: React.FC<ValueOrientationMatrixProps> = ({ personalPlotList }) => {
   return (
-    <div className="w-full aspect-square bg-white rounded-ldsg-400 border border-gray-border overflow-hidden">
+    <div className="w-full aspect-square bg-white rounded-ldsg-400 border border-gray-border overflow-hidden" style={{ aspectRatio: 1 }}>
       <ParentSize>
         {({ width, height }) => (
           <MatrixContent
