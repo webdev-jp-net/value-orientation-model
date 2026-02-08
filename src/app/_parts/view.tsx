@@ -2,7 +2,7 @@
 
 import type { FC } from 'react'
 
-import { ValueOrientationMatrix } from '@/components/ValueOrientationMatrix'
+import { Matrix } from './Matrix'
 import { Guide } from './Guide'
 import { GroupEditor } from './GroupEditor'
 import { useHome } from './useHome'
@@ -27,7 +27,7 @@ export const HomeView: FC = () => {
   return (
     <main className={styles.home} data-testid="home">
       <section>
-        <ValueOrientationMatrix personalPlotList={completePersonList} />
+        <Matrix personalPlotList={completePersonList} />
         <div id="group-editor">
           <GroupEditor
           groupName={group.name}
