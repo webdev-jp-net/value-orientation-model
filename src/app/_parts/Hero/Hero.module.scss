@@ -7,10 +7,19 @@
 .title {
   display: flex;
   place-items: center;
-  background-color: var(--bg-primary);
+  background: var(--bg-primary)
+    linear-gradient(
+      to top,
+      #fff,
+      rgb(0 0 0 / 10%) 1px,
+      rgb(0 0 0 / 5%) rem(2),
+      rgb(0 0 0 / 2.5%) rem(8),
+      transparent rem(32)
+    );
+  border-bottom: 1px solid #fff6;
 
-  @include mq($from: wide) {
-    height: min(40svh, rem(640));
+  @include mq(fromWide) {
+    height: min(40svh, rem(420));
   }
 }
 
@@ -25,10 +34,23 @@
 
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
-  padding-top: var(--spacing-xl);
+  gap: var(--spacing-lg);
+
+  @include mq(narrow) {
+    padding-top: var(--spacing-2xl);
+  }
+
+  @include mq(fromWide) {
+    padding-top: var(--spacing-3xl);
+  }
 
   p {
-    @include txt-paragraph;
+    @include mq(narrow) {
+      @include txt-description;
+    }
+
+    @include mq(fromWide) {
+      @include txt-paragraph;
+    }
   }
 }

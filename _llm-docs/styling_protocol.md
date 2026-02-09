@@ -87,7 +87,7 @@
 
 ```scss
 .example {
-  color: var(--text-primary);
+  color: var(--txt-basic);
 }
 ```
 

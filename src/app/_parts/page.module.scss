@@ -3,15 +3,15 @@
 .home {
   display: flex;
   flex-direction: column;
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-light);
 
   @include mq(narrow) {
     gap: var(--spacing-3xl);
     padding-bottom: var(--spacing-3xl);
   }
 
-  @include mq($from: wide) {
-    gap: var(--spacing-3xl);
-    padding-bottom: var(--spacing-3xl);
+  @include mq(fromWide) {
+    gap: var(--spacing-4xl);
+    padding-bottom: var(--spacing-4xl);
   }
 }
