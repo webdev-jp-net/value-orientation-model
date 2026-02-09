@@ -2,7 +2,7 @@
 
 import type { FC } from 'react'
 
-import { Trash2, Loader2, ClipboardList, Share2, Check } from 'lucide-react'
+import { Trash2, ClipboardList, Share2, Check } from 'lucide-react'
 import Link from 'next/link'
 
 import styles from './GroupEditor.module.scss'
@@ -19,9 +19,6 @@ export interface GroupEditorProps {
   onUpdatePerson: (id: string, field: keyof PersonalPlot, value: string | number) => void
   onDeletePerson: (id: string) => void
   onImport: (id: string, csvValue: string) => void
-  onSave: () => void
-  isSaveDisabled: boolean
-  isSaving?: boolean
 }
 
 export const GroupEditor: FC<GroupEditorProps> = ({
@@ -32,9 +29,6 @@ export const GroupEditor: FC<GroupEditorProps> = ({
   onUpdatePerson,
   onDeletePerson,
   onImport,
-  onSave,
-  isSaveDisabled,
-  isSaving = false,
 }) => {
   const { isShared, handleShare } = useGroupEditor()
 
@@ -43,7 +37,7 @@ export const GroupEditor: FC<GroupEditorProps> = ({
       <section className={styles.section}>
         <div className={styles.header}>
           <div className={styles.headerRow}>
-            <h3 className={styles.title}>データ入力</h3>
+            <h3 className={styles.title}>みんなのいまの重心</h3>
             <button type="button" className={styles.addButton} onClick={onAddPerson}>
               人物を追加
             </button>
@@ -132,26 +126,10 @@ export const GroupEditor: FC<GroupEditorProps> = ({
             placeholder="グループ名を入力"
             className={`${styles.input} ${styles.groupNameInput}`}
           />
-          <div className={styles.footerActions}>
-            <button type="button" className={styles.shareButton} onClick={handleShare}>
-              {isShared ? <Check size={20} aria-hidden /> : <Share2 size={20} aria-hidden />}
-              {isShared ? 'コピーしました' : 'このグループをシェア'}
-            </button>
-            <button
-              type="button"
-              className={styles.saveButton}
-              onClick={onSave}
-              disabled={isSaveDisabled || isSaving}
-            >
-              <span className={styles.saveButtonContent}>
-                {isSaving ? (
-                  <Loader2 size={20} className={styles.spinner} aria-hidden />
-                ) : (
-                  'このグループを一時保存'
-                )}
-              </span>
-            </button>
-          </div>
+          <button type="button" className={styles.shareButton} onClick={handleShare}>
+            {isShared ? <Check size={20} aria-hidden /> : <Share2 size={20} aria-hidden />}
+            この結果のURLをコピー
+          </button>
         </div>
       </section>
     </div>
