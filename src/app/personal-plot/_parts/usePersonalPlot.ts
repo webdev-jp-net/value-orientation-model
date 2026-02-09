@@ -116,7 +116,7 @@ export const usePersonalPlot = () => {
       })
     }
 
-    router.push('/#group-editor')
+    router.push('/#matrix')
   }
 
   const handleBack = () => {
