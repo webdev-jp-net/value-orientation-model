@@ -2,8 +2,10 @@
 
 import type { FC } from 'react'
 
-import { Trash2, Loader2, ClipboardList, Share2, Check } from 'lucide-react'
-import Link from 'next/link'
+import { Trash2, ClipboardList, Share2, Check, UserPlus } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+
+import { Button } from '@/components/Button'
 
 import styles from './GroupEditor.module.scss'
 
@@ -19,9 +21,6 @@ export interface GroupEditorProps {
   onUpdatePerson: (id: string, field: keyof PersonalPlot, value: string | number) => void
   onDeletePerson: (id: string) => void
   onImport: (id: string, csvValue: string) => void
-  onSave: () => void
-  isSaveDisabled: boolean
-  isSaving?: boolean
 }
 
 export const GroupEditor: FC<GroupEditorProps> = ({
@@ -32,10 +31,8 @@ export const GroupEditor: FC<GroupEditorProps> = ({
   onUpdatePerson,
   onDeletePerson,
   onImport,
-  onSave,
-  isSaveDisabled,
-  isSaving = false,
 }) => {
+  const router = useRouter()
   const { isShared, handleShare } = useGroupEditor()
 
   return (
@@ -43,10 +40,11 @@ export const GroupEditor: FC<GroupEditorProps> = ({
       <section className={styles.section}>
         <div className={styles.header}>
           <div className={styles.headerRow}>
-            <h3 className={styles.title}>データ入力</h3>
-            <button type="button" className={styles.addButton} onClick={onAddPerson}>
+            <h3 className={styles.title}>みんなのいまの重心</h3>
+            <Button onClick={onAddPerson}>
+              <UserPlus size={20} aria-hidden />
               人物を追加
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -54,9 +52,9 @@ export const GroupEditor: FC<GroupEditorProps> = ({
           <table className={styles.table}>
             <thead>
               <tr className={styles.theadRow}>
-                <th className={styles.th}>ラベル</th>
-                <th className={styles.th}>指標データ</th>
-                <th className={styles.th}>操作</th>
+                <th className={styles.th}>名前</th>
+                <th className={styles.th}>オーナーシップ, コンセンサス, 自立, 融合</th>
+                <th className={styles.th}></th>
               </tr>
             </thead>
             <tbody>
@@ -82,14 +80,7 @@ export const GroupEditor: FC<GroupEditorProps> = ({
                       <input
                         type="text"
                         key={`${person.id}-${person.ownership}-${person.consensus}-${person.diversity}-${person.identityFusion}`}
-                        defaultValue={
-                          person.ownership === 0 &&
-                          person.consensus === 0 &&
-                          person.diversity === 0 &&
-                          person.identityFusion === 0
-                            ? ''
-                            : `${person.ownership}, ${person.consensus}, ${person.diversity}, ${person.identityFusion}`
-                        }
+                        defaultValue={`${person.ownership}, ${person.consensus}, ${person.diversity}, ${person.identityFusion}`}
                         onBlur={e => onImport(person.id, e.target.value)}
                         placeholder="オーナーシップ, コンセンサス, 自立, 融合"
                         className={styles.input}
@@ -97,23 +88,23 @@ export const GroupEditor: FC<GroupEditorProps> = ({
                     </td>
                     <td className={styles.td}>
                       <div className={styles.cellActions}>
-                        <Link
-                          href={`/personal-plot?targetId=${person.id}`}
+                        <Button
+                          variant="link"
                           className={styles.linkToForm}
                           title="設問から入力"
+                          onClick={() => router.push(`/personal-plot?targetId=${person.id}`)}
                         >
-                          <ClipboardList size={16} aria-hidden />
+                          <ClipboardList size={18} aria-hidden />
                           <span className={styles.linkToFormLabel}>設問から入力</span>
-                        </Link>
-                        <button
-                          type="button"
+                        </Button>
+                        <Button
+                          variant="link"
                           className={styles.deleteButton}
                           onClick={() => onDeletePerson(person.id)}
-                          title="削除"
                         >
-                          <Trash2 size={16} aria-hidden />
+                          <Trash2 size={18} aria-hidden />
                           <span className={styles.deleteButtonLabel}>削除</span>
-                        </button>
+                        </Button>
                       </div>
                     </td>
                   </tr>
@@ -132,26 +123,10 @@ export const GroupEditor: FC<GroupEditorProps> = ({
             placeholder="グループ名を入力"
             className={`${styles.input} ${styles.groupNameInput}`}
           />
-          <div className={styles.footerActions}>
-            <button type="button" className={styles.shareButton} onClick={handleShare}>
-              {isShared ? <Check size={20} aria-hidden /> : <Share2 size={20} aria-hidden />}
-              {isShared ? 'コピーしました' : 'このグループをシェア'}
-            </button>
-            <button
-              type="button"
-              className={styles.saveButton}
-              onClick={onSave}
-              disabled={isSaveDisabled || isSaving}
-            >
-              <span className={styles.saveButtonContent}>
-                {isSaving ? (
-                  <Loader2 size={20} className={styles.spinner} aria-hidden />
-                ) : (
-                  'このグループを一時保存'
-                )}
-              </span>
-            </button>
-          </div>
+          <Button variant="basic" size="liquid" onClick={handleShare}>
+            {isShared ? <Check size={20} aria-hidden /> : <Share2 size={20} aria-hidden />}
+            この結果のURLをコピー
+          </Button>
         </div>
       </section>
     </div>

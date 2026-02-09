@@ -2,6 +2,14 @@
 
 .groupEditor {
   @include container;
+
+  @include mq(narrow) {
+    scroll-margin-top: var(--spacing-xl);
+  }
+
+  @include mq(fromWide) {
+    scroll-margin-top: var(--spacing-3xl);
+  }
 }
 
 .section {
@@ -12,12 +20,11 @@
     gap: var(--spacing-md);
   }
 
-  @include mq($from: wide) {
+  @include mq(fromWide) {
+    @include panel;
+
     gap: var(--spacing-lg);
     padding: var(--spacing-xl);
-    background-color: var(--bg-primary);
-    border: 1px solid var(--border-color);
-    border-radius: rem(12);
   }
 }
 
@@ -34,15 +41,13 @@
 }
 
 .title {
-  @include hd-md;
+  @include mq(narrow) {
+    @include hd-sm;
+  }
 
-  color: var(--text-primary);
-}
-
-.addButton {
-  @include tmp-btn-primary;
-
-  border-radius: rem(5);
+  @include mq(fromWide) {
+    @include hd-md;
+  }
 }
 
 .tableScroll {
@@ -57,15 +62,18 @@
 
 .theadRow {
   border-bottom: 1px solid var(--border-color);
+
+  @include mq(narrow) {
+    display: none;
+  }
 }
 
 .th {
   padding-block: var(--spacing-md);
-  padding-inline: var(--spacing-sm);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-normal);
   line-height: 1.8;
-  color: var(--text-secondary);
+  color: var(--txt-description);
 
   &:first-child {
     width: 25%;
@@ -75,175 +83,104 @@
     text-align: right;
     white-space: nowrap;
   }
+
+  .theadRow & {
+    padding-block: var(--spacing-sm);
+  }
 }
 
 .tbodyRow {
   border-bottom: 1px solid var(--border-color);
+
+  @include mq(narrow) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding-block: var(--spacing-md);
+  }
 }
 
 .td {
-  padding-block: var(--spacing-md);
-  padding-inline: var(--spacing-sm);
+  @include mq(narrow) {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+
+  @include mq(fromWide) {
+    padding-block: var(--spacing-md);
+
+    &:first-child {
+      padding-right: var(--spacing-md);
+    }
+  }
 }
 
 .emptyCell {
   padding-block: var(--spacing-3xl);
   font-size: var(--font-size-base);
   line-height: 1.8;
-  color: var(--text-secondary);
+  color: var(--txt-description);
   text-align: center;
 }
 
 .input {
+  @include textbox;
+
   width: 100%;
   padding-block: var(--spacing-sm);
   padding-inline: rem(12);
-  font-size: var(--font-size-base);
-  line-height: 1.8;
-  color: var(--text-primary);
-  background-color: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: rem(3);
-  transition: border-color var(--transition);
-
-  &::placeholder {
-    color: var(--text-secondary);
-  }
-
-  &:focus {
-    border-color: var(--link-color);
-    outline: none;
-  }
 }
 
 .cellActions {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-md);
   align-items: center;
   justify-content: flex-end;
 
-  @include mq($preset: fromWide) {
-    gap: var(--spacing-lg);
+  @include mq(narrow) {
+    margin-top: var(--spacing-xs);
+  }
+
+  @include mq(fromWide) {
+    gap: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
   }
 }
 
-.linkToForm {
-  display: inline-flex;
-  gap: var(--spacing-sm);
-  align-items: center;
+[class].linkToForm {
   font-size: var(--font-size-sm);
-  line-height: 1.8;
-  color: var(--link-color);
-  transition: opacity var(--transition);
+  color: var(--txt-link);
 
   &:hover {
-    opacity: 0.8;
+    color: var(--txt-link);
   }
 }
 
-.linkToFormLabel {
-  display: none;
-
-  @include mq($preset: fromWide) {
-    display: inline;
-  }
-}
-
-.deleteButton {
-  display: inline-flex;
-  gap: var(--spacing-sm);
-  align-items: center;
-  padding: 0;
+[class].deleteButton {
+  gap: rem(4);
   font-size: var(--font-size-sm);
-  line-height: 1.8;
-  color: var(--text-secondary);
-  cursor: pointer;
-  background: none;
-  border: none;
-  transition: color var(--transition);
 
   &:hover {
-    color: var(--fg-error);
-  }
-}
-
-.deleteButtonLabel {
-  display: none;
-
-  @include mq($preset: fromWide) {
-    display: inline;
+    color: var(--txt-alert);
   }
 }
 
 .footer {
-  gap: var(--spacing-md);
-
   @include mq(narrow) {
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-md);
     justify-content: flex-end;
     border: none;
   }
 
-  @include mq($from: wide) {
+  @include mq(fromWide) {
     display: grid;
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: 1fr auto;
+    gap: var(--spacing-lg);
   }
 }
 
 .groupNameInput {
   width: 100%;
-}
-
-.footerActions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-
-  @include mq($preset: fromWide) {
-    flex-direction: row;
-  }
-}
-
-.shareButton {
-  @include tmp-btn-secondary;
-}
-
-.saveButton {
-  @include tmp-btn-primary;
-
-  transition: opacity var(--transition);
-
-  @include mq($preset: fromWide) {
-    width: auto;
-  }
-
-  &:disabled {
-    opacity: 0.4;
-  }
-
-  &:hover:not(:disabled) {
-    opacity: 0.8;
-  }
-}
-
-.saveButtonContent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.spinner {
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
 }

@@ -2,57 +2,24 @@
 
 import type { FC } from 'react'
 
+import { Button } from '@/components/Button'
+
 import styles from './page.module.scss'
 
+import { Question } from './Question'
 import { usePersonalPlot } from './usePersonalPlot'
 
-type QuestionItem = {
-  id: string
-  question: string
-  axis: string
-  orientation: string
-  label: { min: string; max: string }
-}
-
 export const PersonalPlotView: FC = () => {
-  const { isMounted, answers, shuffledQuestions, isAllAnswered, handleAnswerChange, handleSubmit } =
-    usePersonalPlot()
-
-  const renderQuestion = (q: QuestionItem) => (
-    <div key={q.id} className={styles.question}>
-      <h3 className={styles.questionTitle}>{q.question}</h3>
-      <div className={styles.optionRow}>
-        <div className={styles.optionScale}>
-          <span className={styles.labelMin}>{q.label.min}</span>
-          <span className={styles.labelMax}>{q.label.max}</span>
-          <div className={styles.optionGroup}>
-            {[-2, -1, 1, 2].map(val => (
-              <label key={val} className={styles.optionLabel}>
-                <input
-                  type="radio"
-                  name={q.id}
-                  value={val}
-                  checked={answers[q.id] === val}
-                  onChange={() => handleAnswerChange(q.id, val)}
-                  className={styles.screenReaderOnly}
-                  aria-hidden
-                />
-                <span
-                  className={
-                    answers[q.id] === val
-                      ? `${styles.optionIndicator} ${styles.optionIndicatorSelected}`
-                      : styles.optionIndicator
-                  }
-                >
-                  {answers[q.id] === val && <span className={styles.optionDot} aria-hidden />}
-                </span>
-              </label>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+  const {
+    isMounted,
+    answers,
+    valueLocusQuestionList,
+    boundaryQuestionList,
+    handleAnswerChangeWithScroll,
+    isAllAnswered,
+    handleSubmit,
+    handleBack,
+  } = usePersonalPlot()
 
   if (!isMounted) return null
 
@@ -73,7 +40,15 @@ export const PersonalPlotView: FC = () => {
           </p>
         </div>
         <div className={styles.sectionBody}>
-          {shuffledQuestions.filter(q => q.axis === 'valueLocus').map(q => renderQuestion(q))}
+          {valueLocusQuestionList.map((q, i) => (
+            <Question
+              key={q.id}
+              item={q}
+              index={i}
+              value={answers[q.id]}
+              onAnswerChange={handleAnswerChangeWithScroll}
+            />
+          ))}
         </div>
       </section>
 
@@ -85,19 +60,33 @@ export const PersonalPlotView: FC = () => {
           </p>
         </div>
         <div className={styles.sectionBody}>
-          {shuffledQuestions.filter(q => q.axis === 'boundary').map(q => renderQuestion(q))}
+          {boundaryQuestionList.map((q, i) => (
+            <Question
+              key={q.id}
+              item={q}
+              index={valueLocusQuestionList.length + i}
+              value={answers[q.id]}
+              onAnswerChange={handleAnswerChangeWithScroll}
+            />
+          ))}
         </div>
       </section>
 
       <footer className={styles.footer}>
-        <button
-          type="button"
+        <Button variant="basic" size="full" className={styles.submitButton} onClick={handleBack}>
+          測定をやめて戻る
+        </Button>
+        <Button
+          variant="basic"
+          size="full"
+          className={styles.submitButton}
           onClick={handleSubmit}
           disabled={!isAllAnswered}
-          className={styles.submitButton}
         >
-          回答を完了してプロットを追加
-        </button>
+          回答を完了して
+          <br />
+          プロットを追加
+        </Button>
       </footer>
     </main>
   )
