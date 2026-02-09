@@ -10,7 +10,7 @@
     padding-bottom: var(--spacing-3xl);
   }
 
-  @include mq($from: wide) {
+  @include mq(fromWide) {
     gap: var(--spacing-3xl);
     padding-bottom: var(--spacing-3xl);
   }

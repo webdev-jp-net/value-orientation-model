@@ -22,7 +22,7 @@
     padding: var(--spacing-2xl) 0;
   }
 
-  @include mq($from: wide) {
+  @include mq(fromWide) {
     gap: var(--spacing-3xl);
     padding: var(--spacing-3xl) 0;
   }
@@ -80,7 +80,7 @@
     gap: var(--spacing-xl);
   }
 
-  @include mq($from: wide) {
+  @include mq(fromWide) {
     gap: var(--spacing-xl);
   }
 }
@@ -119,7 +119,7 @@
     align-items: flex-start;
   }
 
-  @include mq($from: wide) {
+  @include mq(fromWide) {
     flex-flow: row nowrap;
     gap: rem(40);
     align-items: center;
@@ -134,7 +134,7 @@
   color: var(--fg-muted);
   text-align: left;
 
-  @include mq($from: wide) {
+  @include mq(fromWide) {
     flex-shrink: 0;
     width: rem(160);
   }
@@ -148,7 +148,7 @@
   color: var(--fg-muted);
   text-align: right;
 
-  @include mq($from: wide) {
+  @include mq(fromWide) {
     flex-shrink: 0;
     order: 3;
     width: rem(160);
@@ -161,7 +161,7 @@
   order: 3;
   width: 100%;
 
-  @include mq($from: wide) {
+  @include mq(fromWide) {
     flex: 1;
     order: 2;
     padding-inline: var(--spacing-lg);

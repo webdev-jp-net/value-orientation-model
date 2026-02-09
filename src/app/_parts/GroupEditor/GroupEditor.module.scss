@@ -12,7 +12,7 @@
     gap: var(--spacing-md);
   }
 
-  @include mq($from: wide) {
+  @include mq(fromWide) {
     gap: var(--spacing-lg);
     padding: var(--spacing-xl);
     background-color: var(--bg-primary);
@@ -38,7 +38,7 @@
     @include hd-sm;
   }
 
-  @include mq($preset: fromWide) {
+  @include mq(fromWide) {
     @include hd-md;
   }
 }
@@ -127,7 +127,7 @@
   align-items: center;
   justify-content: flex-end;
 
-  @include mq($preset: fromWide) {
+  @include mq(fromWide) {
     gap: var(--spacing-lg);
   }
 }
@@ -149,7 +149,7 @@
 .linkToFormLabel {
   display: none;
 
-  @include mq($preset: fromWide) {
+  @include mq(fromWide) {
     display: inline;
   }
 }
@@ -175,7 +175,7 @@
 .deleteButtonLabel {
   display: none;
 
-  @include mq($preset: fromWide) {
+  @include mq(fromWide) {
     display: inline;
   }
 }
@@ -190,7 +190,7 @@
     border: none;
   }
 
-  @include mq($from: wide) {
+  @include mq(fromWide) {
     display: grid;
     grid-template-columns: 1fr auto;
   }

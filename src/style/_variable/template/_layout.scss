@@ -9,7 +9,7 @@
     padding: 0 var(--spacing-lg);
   }
 
-  @include mq($from: wide) {
+  @include mq(fromWide) {
     padding: 0 var(--spacing-3xl);
     margin: 0 auto;
   }
@@ -23,7 +23,7 @@
     padding: 0 var(--spacing-lg);
   }
 
-  @include mq($from: wide) {
+  @include mq(fromWide) {
     padding: 0 var(--spacing-3xl);
     margin: 0 auto;
   }

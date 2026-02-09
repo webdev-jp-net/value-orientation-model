@@ -9,8 +9,8 @@
   place-items: center;
   background-color: var(--bg-primary);
 
-  @include mq($from: wide) {
-    height: min(40svh, rem(640));
+  @include mq(fromWide) {
+    height: min(40svh, rem(420));
   }
 }
 
