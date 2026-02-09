@@ -2,8 +2,10 @@
 
 import type { FC } from 'react'
 
-import { Trash2, ClipboardList, Share2, Check } from 'lucide-react'
-import Link from 'next/link'
+import { Trash2, ClipboardList, Share2, Check, UserPlus } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+
+import { Button } from '@/components/Button'
 
 import styles from './GroupEditor.module.scss'
 
@@ -30,6 +32,7 @@ export const GroupEditor: FC<GroupEditorProps> = ({
   onDeletePerson,
   onImport,
 }) => {
+  const router = useRouter()
   const { isShared, handleShare } = useGroupEditor()
 
   return (
@@ -38,9 +41,10 @@ export const GroupEditor: FC<GroupEditorProps> = ({
         <div className={styles.header}>
           <div className={styles.headerRow}>
             <h3 className={styles.title}>みんなのいまの重心</h3>
-            <button type="button" className={styles.addButton} onClick={onAddPerson}>
+            <Button className={styles.addButton} onClick={onAddPerson}>
+              <UserPlus size={20} aria-hidden />
               人物を追加
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -91,23 +95,23 @@ export const GroupEditor: FC<GroupEditorProps> = ({
                     </td>
                     <td className={styles.td}>
                       <div className={styles.cellActions}>
-                        <Link
-                          href={`/personal-plot?targetId=${person.id}`}
+                        <Button
+                          variant="link"
                           className={styles.linkToForm}
                           title="設問から入力"
+                          onClick={() => router.push(`/personal-plot?targetId=${person.id}`)}
                         >
-                          <ClipboardList size={16} aria-hidden />
+                          <ClipboardList size={18} aria-hidden />
                           <span className={styles.linkToFormLabel}>設問から入力</span>
-                        </Link>
-                        <button
-                          type="button"
+                        </Button>
+                        <Button
+                          variant="link"
                           className={styles.deleteButton}
                           onClick={() => onDeletePerson(person.id)}
-                          title="削除"
                         >
-                          <Trash2 size={16} aria-hidden />
+                          <Trash2 size={18} aria-hidden />
                           <span className={styles.deleteButtonLabel}>削除</span>
-                        </button>
+                        </Button>
                       </div>
                     </td>
                   </tr>
@@ -126,10 +130,15 @@ export const GroupEditor: FC<GroupEditorProps> = ({
             placeholder="グループ名を入力"
             className={`${styles.input} ${styles.groupNameInput}`}
           />
-          <button type="button" className={styles.shareButton} onClick={handleShare}>
+          <Button
+            variant="basic"
+            size="liquid"
+            className={styles.shareButton}
+            onClick={handleShare}
+          >
             {isShared ? <Check size={20} aria-hidden /> : <Share2 size={20} aria-hidden />}
             この結果のURLをコピー
-          </button>
+          </Button>
         </div>
       </section>
     </div>

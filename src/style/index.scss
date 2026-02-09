@@ -44,7 +44,7 @@
   --txt-accent: #0070b3;
   --txt-on-fill: #fff;
   --txt-link: #0070b3;
-  --txt-alert: #ff0051;
+  --txt-alert: #c53030;
   --txt-disabled: #777;
 
   /* background color */
@@ -122,7 +122,9 @@
 
   /* その他 */
   --border-radius: 0.25rem;
-  --transition: 0.2s ease;
+  --transition-ease: 250ms ease;
+  --transition-enter: 375ms ease-out;
+  --transition-leave: 250ms ease-in;
 }
 
 html {

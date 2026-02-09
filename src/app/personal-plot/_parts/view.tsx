@@ -2,6 +2,8 @@
 
 import type { FC } from 'react'
 
+import { Button } from '@/components/Button'
+
 import styles from './page.module.scss'
 
 import { usePersonalPlot } from './usePersonalPlot'
@@ -90,14 +92,15 @@ export const PersonalPlotView: FC = () => {
       </section>
 
       <footer className={styles.footer}>
-        <button
-          type="button"
+        <Button
+          variant="basic"
+          size="full"
+          className={styles.submitButton}
           onClick={handleSubmit}
           disabled={!isAllAnswered}
-          className={styles.submitButton}
         >
           回答を完了してプロットを追加
-        </button>
+        </Button>
       </footer>
     </main>
   )

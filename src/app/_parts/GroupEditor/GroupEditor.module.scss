@@ -61,11 +61,14 @@
 
 .theadRow {
   border-bottom: 1px solid var(--border-color);
+
+  @include mq(narrow) {
+    display: none;
+  }
 }
 
 .th {
   padding-block: var(--spacing-md);
-  padding-inline: var(--spacing-sm);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-normal);
   line-height: 1.8;
@@ -79,15 +82,37 @@
     text-align: right;
     white-space: nowrap;
   }
+
+  .theadRow & {
+    padding-block: var(--spacing-sm);
+  }
 }
 
 .tbodyRow {
   border-bottom: 1px solid var(--border-color);
+
+  @include mq(narrow) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding-block: var(--spacing-sm);
+  }
 }
 
 .td {
-  padding-block: var(--spacing-md);
-  padding-inline: var(--spacing-sm);
+  @include mq(narrow) {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+
+  @include mq(fromWide) {
+    padding-block: var(--spacing-md);
+
+    &:first-child {
+      padding-right: var(--spacing-md);
+    }
+  }
 }
 
 .emptyCell {
@@ -108,7 +133,7 @@
   background-color: var(--bg-primary);
   border: 1px solid var(--border-color);
   border-radius: rem(3);
-  transition: border-color var(--transition);
+  transition: border-color var(--transition-ease);
 
   &::placeholder {
     color: var(--text-secondary);
@@ -122,61 +147,36 @@
 
 .cellActions {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-md);
   align-items: center;
   justify-content: flex-end;
+
+  @include mq(narrow) {
+    gap: var(--spacing-md);
+  }
 
   @include mq(fromWide) {
     gap: var(--spacing-lg);
   }
 }
 
-.linkToForm {
-  display: inline-flex;
-  gap: var(--spacing-sm);
-  align-items: center;
+[class].linkToForm {
+  gap: rem(4);
   font-size: var(--font-size-sm);
-  line-height: 1.8;
-  color: var(--link-color);
-  transition: opacity var(--transition);
+  color: var(--txt-link);
+  transition:
+    color var(--transition-ease),
+    background-size var(--transition-ease);
+}
+
+[class].deleteButton {
+  gap: rem(4);
+  font-size: var(--font-size-sm);
+  transition:
+    color var(--transition-ease),
+    background-size var(--transition-ease);
 
   &:hover {
-    opacity: 0.8;
-  }
-}
-
-.linkToFormLabel {
-  display: none;
-
-  @include mq(fromWide) {
-    display: inline;
-  }
-}
-
-.deleteButton {
-  display: inline-flex;
-  gap: var(--spacing-sm);
-  align-items: center;
-  padding: 0;
-  font-size: var(--font-size-sm);
-  line-height: 1.8;
-  color: var(--text-secondary);
-  cursor: pointer;
-  background: none;
-  border: none;
-  transition: color var(--transition);
-
-  &:hover {
-    color: var(--fg-error);
-  }
-}
-
-.deleteButtonLabel {
-  display: none;
-
-  @include mq(fromWide) {
-    display: inline;
+    color: var(--txt-alert);
   }
 }
 

@@ -12,9 +12,9 @@
   border: none;
   border-radius: rem(6);
   transition:
-    background-color var(--transition),
-    color var(--transition),
-    box-shadow var(--transition);
+    background-color var(--transition-ease),
+    color var(--transition-ease),
+    box-shadow var(--transition-ease);
 
   // アイコン
   &.--icon {
@@ -83,18 +83,18 @@
 
 // リンク
 @mixin txt-link($color: currentColor) {
-  display: inline-block;
-  padding: rem(4) 0;
-  font-weight: 500;
+  display: inline-flex;
+  padding: rem(1) 0;
+  font-weight: var(--font-weight-bold);
   color: $color;
   text-decoration: none;
-  background: transparent linear-gradient($color, $color) no-repeat left bottom / 100% rem(2);
+  background: transparent linear-gradient($color, $color) no-repeat right bottom / 0 rem(2);
   background-color: transparent;
-  transition: background-size var(--transition);
+  transition: background-size var(--transition-ease);
 
   @media (any-hover) {
     &:hover {
-      background: transparent linear-gradient($color, $color) no-repeat right bottom / 0 rem(2);
+      background: transparent linear-gradient($color, $color) no-repeat left bottom / 100% rem(2);
       transition: background-size var(--transition-leave);
     }
   }
@@ -109,12 +109,12 @@
   text-decoration: none;
   background: transparent linear-gradient($color, $color) no-repeat center bottom / 0 rem(1);
   background-color: transparent;
-  transition: background-size var(--transition);
+  transition: background-size var(--transition-ease);
 
   @media (any-hover) {
     &:hover {
       background: transparent linear-gradient($color, $color) no-repeat center bottom / 100% rem(1);
-      transition: background-size var(--transition);
+      transition: background-size var(--transition-ease);
     }
   }
 }

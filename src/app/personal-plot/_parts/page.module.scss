@@ -187,8 +187,8 @@
   border: 2px solid var(--border-color);
   border-radius: 50%;
   transition:
-    border-color var(--transition),
-    background-color var(--transition);
+    border-color var(--transition-ease),
+    background-color var(--transition-ease);
 }
 
 .optionIndicatorSelected {
