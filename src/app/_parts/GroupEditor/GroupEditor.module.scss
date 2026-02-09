@@ -34,9 +34,13 @@
 }
 
 .title {
-  @include hd-md;
+  @include mq(narrow) {
+    @include hd-sm;
+  }
 
-  color: var(--text-primary);
+  @include mq($preset: fromWide) {
+    @include hd-md;
+  }
 }
 
 .addButton {
@@ -188,7 +192,7 @@
 
   @include mq($from: wide) {
     display: grid;
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: 1fr auto;
   }
 }
 
@@ -196,54 +200,6 @@
   width: 100%;
 }
 
-.footerActions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-
-  @include mq($preset: fromWide) {
-    flex-direction: row;
-  }
-}
-
 .shareButton {
-  @include tmp-btn-secondary;
-}
-
-.saveButton {
   @include tmp-btn-primary;
-
-  transition: opacity var(--transition);
-
-  @include mq($preset: fromWide) {
-    width: auto;
-  }
-
-  &:disabled {
-    opacity: 0.4;
-  }
-
-  &:hover:not(:disabled) {
-    opacity: 0.8;
-  }
-}
-
-.saveButtonContent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.spinner {
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
 }

@@ -13,7 +13,6 @@ export const useHome = () => {
   const pathname = usePathname()
   const [group, setGroup] = useAtom(groupAtom)
   const [isMounted, setIsMounted] = useState(false)
-  const [isSaving, setIsSaving] = useState(false)
   const initialLoadHadParams = useRef(false)
 
   // ハイドレーションエラー対策および初期URLパラメータ解析
@@ -97,14 +96,6 @@ export const useHome = () => {
     }
   }, [isMounted])
 
-  const handleSave = () => {
-    setIsSaving(true)
-    setGroup({ ...group })
-    setTimeout(() => {
-      setIsSaving(false)
-    }, 300)
-  }
-
   const addPerson = () => {
     const newPerson: PersonalPlot = {
       id: Date.now().toString(),
@@ -180,9 +171,7 @@ export const useHome = () => {
     isMounted,
     group,
     setGroup,
-    isSaving,
     completePersonList,
-    handleSave,
     addPerson,
     updatePerson,
     handleImport,

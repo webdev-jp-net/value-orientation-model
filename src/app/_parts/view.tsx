@@ -15,9 +15,7 @@ export const HomeView: FC = () => {
     isMounted,
     group,
     setGroup,
-    isSaving,
     completePersonList,
-    handleSave,
     addPerson,
     updatePerson,
     handleImport,
@@ -38,9 +36,6 @@ export const HomeView: FC = () => {
         onUpdatePerson={updatePerson}
         onDeletePerson={deletePerson}
         onImport={handleImport}
-        onSave={handleSave}
-        isSaveDisabled={group.name.trim() === '' || completePersonList.length === 0}
-        isSaving={isSaving}
       />
       <Guide />
     </main>
