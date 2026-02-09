@@ -13,11 +13,10 @@
   }
 
   @include mq(fromWide) {
+    @include panel;
+
     gap: var(--spacing-lg);
     padding: var(--spacing-xl);
-    background-color: var(--bg-primary);
-    border: 1px solid var(--border-color);
-    border-radius: rem(12);
   }
 }
 
@@ -43,12 +42,6 @@
   }
 }
 
-.addButton {
-  @include tmp-btn-primary;
-
-  border-radius: rem(5);
-}
-
 .tableScroll {
   overflow-x: auto;
 }
@@ -72,7 +65,7 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-normal);
   line-height: 1.8;
-  color: var(--text-secondary);
+  color: var(--txt-description);
 
   &:first-child {
     width: 25%;
@@ -95,7 +88,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
-    padding-block: var(--spacing-sm);
+    padding-block: var(--spacing-md);
   }
 }
 
@@ -119,30 +112,16 @@
   padding-block: var(--spacing-3xl);
   font-size: var(--font-size-base);
   line-height: 1.8;
-  color: var(--text-secondary);
+  color: var(--txt-description);
   text-align: center;
 }
 
 .input {
+  @include textbox;
+
   width: 100%;
   padding-block: var(--spacing-sm);
   padding-inline: rem(12);
-  font-size: var(--font-size-base);
-  line-height: 1.8;
-  color: var(--text-primary);
-  background-color: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: rem(3);
-  transition: border-color var(--transition-ease);
-
-  &::placeholder {
-    color: var(--text-secondary);
-  }
-
-  &:focus {
-    border-color: var(--link-color);
-    outline: none;
-  }
 }
 
 .cellActions {
@@ -151,29 +130,27 @@
   justify-content: flex-end;
 
   @include mq(narrow) {
-    gap: var(--spacing-md);
+    margin-top: var(--spacing-xs);
   }
 
   @include mq(fromWide) {
-    gap: var(--spacing-lg);
+    gap: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
   }
 }
 
 [class].linkToForm {
-  gap: rem(4);
   font-size: var(--font-size-sm);
   color: var(--txt-link);
-  transition:
-    color var(--transition-ease),
-    background-size var(--transition-ease);
+
+  &:hover {
+    color: var(--txt-link);
+  }
 }
 
 [class].deleteButton {
   gap: rem(4);
   font-size: var(--font-size-sm);
-  transition:
-    color var(--transition-ease),
-    background-size var(--transition-ease);
 
   &:hover {
     color: var(--txt-alert);
@@ -181,11 +158,10 @@
 }
 
 .footer {
-  gap: var(--spacing-md);
-
   @include mq(narrow) {
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-md);
     justify-content: flex-end;
     border: none;
   }
@@ -193,13 +169,10 @@
   @include mq(fromWide) {
     display: grid;
     grid-template-columns: 1fr auto;
+    gap: var(--spacing-lg);
   }
 }
 
 .groupNameInput {
   width: 100%;
-}
-
-.shareButton {
-  @include tmp-btn-primary;
 }

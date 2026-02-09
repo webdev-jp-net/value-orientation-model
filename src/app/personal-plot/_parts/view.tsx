@@ -39,15 +39,7 @@ export const PersonalPlotView: FC = () => {
                   className={styles.screenReaderOnly}
                   aria-hidden
                 />
-                <span
-                  className={
-                    answers[q.id] === val
-                      ? `${styles.optionIndicator} ${styles.optionIndicatorSelected}`
-                      : styles.optionIndicator
-                  }
-                >
-                  {answers[q.id] === val && <span className={styles.optionDot} aria-hidden />}
-                </span>
+                <span className={styles.optionIndicator}></span>
               </label>
             ))}
           </div>

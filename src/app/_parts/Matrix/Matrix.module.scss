@@ -23,12 +23,12 @@
 .axisName {
   @include txt-description;
 
-  fill: var(--text-secondary);
+  fill: var(--txt-description);
 }
 
 .axisLabel {
   font-weight: var(--font-weight-bold);
-  fill: var(--text-primary);
+  fill: var(--txt-basic);
 }
 
 .plotLabel {
@@ -36,5 +36,5 @@
 }
 
 .plotPoint {
-  fill: var(--link-color);
+  fill: var(--txt-link);
 }

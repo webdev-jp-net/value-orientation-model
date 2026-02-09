@@ -41,7 +41,7 @@ export const GroupEditor: FC<GroupEditorProps> = ({
         <div className={styles.header}>
           <div className={styles.headerRow}>
             <h3 className={styles.title}>みんなのいまの重心</h3>
-            <Button className={styles.addButton} onClick={onAddPerson}>
+            <Button onClick={onAddPerson}>
               <UserPlus size={20} aria-hidden />
               人物を追加
             </Button>
@@ -52,9 +52,9 @@ export const GroupEditor: FC<GroupEditorProps> = ({
           <table className={styles.table}>
             <thead>
               <tr className={styles.theadRow}>
-                <th className={styles.th}>ラベル</th>
-                <th className={styles.th}>指標データ</th>
-                <th className={styles.th}>操作</th>
+                <th className={styles.th}>名前</th>
+                <th className={styles.th}>オーナーシップ, コンセンサス, 自立, 融合</th>
+                <th className={styles.th}></th>
               </tr>
             </thead>
             <tbody>
@@ -130,12 +130,7 @@ export const GroupEditor: FC<GroupEditorProps> = ({
             placeholder="グループ名を入力"
             className={`${styles.input} ${styles.groupNameInput}`}
           />
-          <Button
-            variant="basic"
-            size="liquid"
-            className={styles.shareButton}
-            onClick={handleShare}
-          >
+          <Button variant="basic" size="liquid" onClick={handleShare}>
             {isShared ? <Check size={20} aria-hidden /> : <Share2 size={20} aria-hidden />}
             この結果のURLをコピー
           </Button>
