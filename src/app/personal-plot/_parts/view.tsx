@@ -17,11 +17,18 @@ type QuestionItem = {
 }
 
 export const PersonalPlotView: FC = () => {
-  const { isMounted, answers, shuffledQuestions, isAllAnswered, handleAnswerChange, handleSubmit } =
-    usePersonalPlot()
+  const {
+    isMounted,
+    answers,
+    valueLocusQuestionList,
+    boundaryQuestionList,
+    handleAnswerChangeWithScroll,
+    isAllAnswered,
+    handleSubmit,
+  } = usePersonalPlot()
 
-  const renderQuestion = (q: QuestionItem) => (
-    <div key={q.id} className={styles.question}>
+  const renderQuestion = (q: QuestionItem, index: number) => (
+    <div key={q.id} id={`question-${index}`} className={styles.question}>
       <h3 className={styles.questionTitle}>{q.question}</h3>
       <div className={styles.optionRow}>
         <div className={styles.optionScale}>
@@ -35,7 +42,7 @@ export const PersonalPlotView: FC = () => {
                   name={q.id}
                   value={val}
                   checked={answers[q.id] === val}
-                  onChange={() => handleAnswerChange(q.id, val)}
+                  onChange={() => handleAnswerChangeWithScroll(q.id, val, index)}
                   className={styles.screenReaderOnly}
                   aria-hidden
                 />
@@ -67,7 +74,7 @@ export const PersonalPlotView: FC = () => {
           </p>
         </div>
         <div className={styles.sectionBody}>
-          {shuffledQuestions.filter(q => q.axis === 'valueLocus').map(q => renderQuestion(q))}
+          {valueLocusQuestionList.map((q, i) => renderQuestion(q, i))}
         </div>
       </section>
 
@@ -79,7 +86,7 @@ export const PersonalPlotView: FC = () => {
           </p>
         </div>
         <div className={styles.sectionBody}>
-          {shuffledQuestions.filter(q => q.axis === 'boundary').map(q => renderQuestion(q))}
+          {boundaryQuestionList.map((q, i) => renderQuestion(q, valueLocusQuestionList.length + i))}
         </div>
       </section>
 

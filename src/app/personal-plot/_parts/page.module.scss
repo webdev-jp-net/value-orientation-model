@@ -90,10 +90,12 @@
 
   @include mq(narrow) {
     padding: var(--spacing-lg);
+    scroll-margin-top: var(--spacing-xl);
   }
 
   @include mq(fromWide) {
     padding: var(--spacing-xl);
+    scroll-margin-top: var(--spacing-3xl);
   }
 }
 
