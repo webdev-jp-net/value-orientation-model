@@ -47,7 +47,7 @@ AIエージェントは、あらゆる実装・提案の前に、プロジェク
 - Destructure imports: `import { foo } from 'bar'`
 - Functional components with TypeScript interfaces
 - Use React 19 hooks (useState, useEffect)
-- Global State: Jotaiを使用します。atomWithStorageによるlocalStorage永続化を標準とします。ページ遷移を伴う状態共有が必要な場合は、localStorageを直接叩かずJotaiのatomを経由します。
+- Global State: Jotaiを使用します。グループ状態はメモリ上のatomで保持し、localStorageへの自動保存は行いません。状態の共有はJotaiのatomを経由します。
 
 ### File Organization
 
