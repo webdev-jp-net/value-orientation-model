@@ -88,17 +88,26 @@ export const usePersonalPlot = () => {
       metrics[q.orientation as keyof typeof metrics] += val
     })
 
+    const defaultName = '名前'
+
     if (targetId) {
       setGroup({
         ...group,
         personalPlotList: group.personalPlotList.map((p) =>
-          p.id === targetId ? { ...p, ...metrics } : p
+          p.id === targetId
+            ? {
+                ...p,
+                ...metrics,
+                displayName:
+                  p.displayName.trim() === '' ? defaultName : p.displayName,
+              }
+            : p
         ),
       })
     } else {
       const newPlot: PersonalPlot = {
         id: Date.now().toString(),
-        displayName: '',
+        displayName: defaultName,
         ...metrics,
       }
       setGroup({
